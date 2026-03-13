@@ -1,0 +1,127 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aws": "https://aws.amazon.com/elasticbeanstalk/",
+    "eb": "https://docs.aws.amazon.com/elasticbeanstalk/latest/api/",
+    "Environment": {
+      "@id": "aws:Environment",
+      "@type": "SoftwareApplication",
+      "@context": {
+        "EnvironmentId": {
+          "@id": "aws:EnvironmentId",
+          "@type": "xsd:string"
+        },
+        "EnvironmentName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "EnvironmentArn": {
+          "@id": "aws:EnvironmentArn",
+          "@type": "@id"
+        },
+        "ApplicationName": {
+          "@id": "aws:ApplicationName",
+          "@type": "xsd:string"
+        },
+        "VersionLabel": {
+          "@id": "schema:softwareVersion",
+          "@type": "xsd:string"
+        },
+        "SolutionStackName": {
+          "@id": "aws:SolutionStackName",
+          "@type": "xsd:string"
+        },
+        "PlatformArn": {
+          "@id": "aws:PlatformArn",
+          "@type": "@id"
+        },
+        "Description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "EndpointURL": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "CNAME": {
+          "@id": "aws:CNAME",
+          "@type": "xsd:string"
+        },
+        "DateCreated": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:dateTime"
+        },
+        "DateUpdated": {
+          "@id": "schema:dateModified",
+          "@type": "xsd:dateTime"
+        },
+        "Status": {
+          "@id": "schema:status",
+          "@type": "xsd:string"
+        },
+        "Health": {
+          "@id": "aws:Health",
+          "@type": "xsd:string"
+        },
+        "HealthStatus": {
+          "@id": "aws:HealthStatus",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "Application": {
+      "@id": "aws:Application",
+      "@type": "SoftwareApplication",
+      "@context": {
+        "ApplicationArn": {
+          "@id": "aws:ApplicationArn",
+          "@type": "@id"
+        },
+        "ApplicationName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "Description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "DateCreated": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:dateTime"
+        },
+        "DateUpdated": {
+          "@id": "schema:dateModified",
+          "@type": "xsd:dateTime"
+        },
+        "Versions": {
+          "@id": "aws:Versions",
+          "@type": "@id"
+        },
+        "ConfigurationTemplates": {
+          "@id": "aws:ConfigurationTemplates",
+          "@type": "@id"
+        }
+      }
+    },
+    "Tier": {
+      "@id": "aws:Tier",
+      "@type": "Thing",
+      "@context": {
+        "Name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "Type": {
+          "@id": "aws:TierType",
+          "@type": "xsd:string"
+        },
+        "Version": {
+          "@id": "schema:version",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.apis.io/schemas/amazon-elastic-beanstalk-environment.json",
+  "title": "AWS Elastic Beanstalk Environment",
+  "description": "Schema representing an AWS Elastic Beanstalk environment, which is a collection of AWS resources running an application version deployed on a specific platform.",
+  "type": "object",
+  "required": [
+    "ApplicationName"
+  ],
+  "properties": {
+    "EnvironmentId": {
+      "type": "string",
+      "description": "The ID of this environment.",
+      "pattern": "^e-[a-z0-9]+$"
+    },
+    "EnvironmentName": {
+      "type": "string",
+      "description": "The name of this environment.",
+      "minLength": 4,
+      "maxLength": 40
+    },
+    "EnvironmentArn": {
+      "type": "string",
+      "description": "The ARN of this environment.",
+      "pattern": "^arn:aws[a-zA-Z-]*:elasticbeanstalk:[a-z0-9-]+:[0-9]{12}:environment/.+/.+$"
+    },
+    "ApplicationName": {
+      "type": "string",
+      "description": "The name of the application associated with this environment.",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "VersionLabel": {
+      "type": ["string", "null"],
+      "description": "The application version deployed in this running environment."
+    },
+    "SolutionStackName": {
+      "type": ["string", "null"],
+      "description": "The name of the SolutionStack deployed with this environment."
+    },
+    "PlatformArn": {
+      "type": ["string", "null"],
+      "description": "The ARN of the platform version."
+    },
+    "TemplateName": {
+      "type": ["string", "null"],
+      "description": "The name of the configuration template used to originally launch this environment."
+    },
+    "Description": {
+      "type": ["string", "null"],
+      "description": "Describes this environment.",
+      "maxLength": 200
+    },
+    "EndpointURL": {
+      "type": ["string", "null"],
+      "description": "For load-balanced, autoscaling environments, the URL to the LoadBalancer."
+    },
+    "CNAME": {
+      "type": ["string", "null"],
+      "description": "The URL to the CNAME for this environment."
+    },
+    "DateCreated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The creation date for this environment."
+    },
+    "DateUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The last modified date for this environment."
+    },
+    "Status": {
+      "type": "string",
+      "description": "The current operational status of the environment.",
+      "enum": [
+        "Aborting",
+        "Launching",
+        "Updating",
+        "LinkingFrom",
+        "LinkingTo",
+        "Ready",
+        "Terminating",
+        "Terminated"
+      ]
+    },
+    "AbortableOperationInProgress": {
+      "type": "boolean",
+      "description": "Indicates if there is an in-progress environment configuration update or application version deployment that you can cancel."
+    },
+    "Health": {
+      "type": "string",
+      "description": "Describes the health status of the environment.",
+      "enum": [
+        "Green",
+        "Yellow",
+        "Red",
+        "Grey"
+      ]
+    },
+    "HealthStatus": {
+      "type": "string",
+      "description": "Returns the health status of the application running in your environment.",
+      "enum": [
+        "NoData",
+        "Unknown",
+        "Pending",
+        "Ok",
+        "Info",
+        "Warning",
+        "Degraded",
+        "Severe",
+        "Suspended"
+      ]
+    },
+    "Tier": {
+      "type": "object",
+      "description": "Describes the current tier of this environment.",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "The name of this environment tier.",
+          "enum": [
+            "WebServer",
+            "Worker"
+          ]
+        },
+        "Type": {
+          "type": "string",
+          "description": "The type of this environment tier.",
+          "enum": [
+            "Standard",
+            "SQS/HTTP"
+          ]
+        },
+        "Version": {
+          "type": "string",
+          "description": "The version of this environment tier."
+        }
+      }
+    },
+    "Resources": {
+      "type": "object",
+      "description": "The description of the AWS resources used by this environment.",
+      "properties": {
+        "LoadBalancer": {
+          "type": "object",
+          "properties": {
+            "LoadBalancerName": {
+              "type": "string",
+              "description": "The name of the LoadBalancer."
+            },
+            "Domain": {
+              "type": "string",
+              "description": "The domain name of the LoadBalancer."
+            },
+            "Listeners": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Protocol": {
+                    "type": "string"
+                  },
+                  "Port": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "EnvironmentLinks": {
+      "type": "array",
+      "description": "A list of links to other environments in the same group.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "LinkName": {
+            "type": "string",
+            "description": "The name of the link."
+          },
+          "EnvironmentName": {
+            "type": "string",
+            "description": "The name of the linked environment."
+          }
+        }
+      }
+    },
+    "OperationsRole": {
+      "type": ["string", "null"],
+      "description": "The Amazon Resource Name (ARN) of the environment's operations role."
+    }
+  }
+}

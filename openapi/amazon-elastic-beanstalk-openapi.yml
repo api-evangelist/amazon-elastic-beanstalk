@@ -1,0 +1,501 @@
+openapi: 3.1.0
+info:
+  title: AWS Elastic Beanstalk API
+  description: AWS Elastic Beanstalk is a platform-as-a-service that makes it easy to deploy, manage, and scale web applications and services.
+  version: '2010-12-01'
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+    url: https://aws.amazon.com/elasticbeanstalk/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://elasticbeanstalk.amazonaws.com
+    description: AWS Elastic Beanstalk API endpoint
+paths:
+  /:
+    post:
+      operationId: createApplication
+      summary: Create Application
+      description: Creates an application that has one configuration template named default and no application versions.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - CreateApplication
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2010-12-01'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - ApplicationName
+              properties:
+                ApplicationName:
+                  type: string
+                  description: The name of the application. Must be unique within your account.
+                Description:
+                  type: string
+                  description: Your description of the application.
+                ResourceLifecycleConfig:
+                  type: object
+                  properties:
+                    ServiceRole:
+                      type: string
+                    VersionLifecycleConfig:
+                      type: object
+                      properties:
+                        MaxCountRule:
+                          type: object
+                          properties:
+                            Enabled:
+                              type: boolean
+                            MaxCount:
+                              type: integer
+                            DeleteSourceFromS3:
+                              type: boolean
+                        MaxAgeRule:
+                          type: object
+                          properties:
+                            Enabled:
+                              type: boolean
+                            MaxAgeInDays:
+                              type: integer
+                            DeleteSourceFromS3:
+                              type: boolean
+                  description: Specifies an application resource lifecycle configuration.
+                Tags:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Key:
+                        type: string
+                      Value:
+                        type: string
+                  description: Specifies the tags applied to the application.
+      responses:
+        '200':
+          description: Successful response with the created application details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationDescriptionMessage'
+        '400':
+          description: Bad request error.
+    get:
+      operationId: describeApplications
+      summary: Describe Applications
+      description: Returns the descriptions of existing applications.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - DescribeApplications
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2010-12-01'
+        - name: ApplicationNames.member.1
+          in: query
+          schema:
+            type: string
+          description: The name of an application to describe.
+      responses:
+        '200':
+          description: Successful response with application details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationDescriptionsMessage'
+  /#CreateEnvironment:
+    post:
+      operationId: createEnvironment
+      summary: Create Environment
+      description: Launches an AWS Elastic Beanstalk environment for the specified application using the specified configuration.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - CreateEnvironment
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2010-12-01'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - ApplicationName
+              properties:
+                ApplicationName:
+                  type: string
+                  description: The name of the application that is associated with this environment.
+                EnvironmentName:
+                  type: string
+                  description: A unique name for the environment.
+                Description:
+                  type: string
+                  description: Your description for this environment.
+                CNAMEPrefix:
+                  type: string
+                  description: If specified, the environment attempts to use this value as the prefix for the CNAME.
+                Tier:
+                  type: object
+                  properties:
+                    Name:
+                      type: string
+                      enum:
+                        - WebServer
+                        - Worker
+                    Type:
+                      type: string
+                      enum:
+                        - Standard
+                        - SQS/HTTP
+                    Version:
+                      type: string
+                  description: Specifies the tier to use in creating this environment.
+                SolutionStackName:
+                  type: string
+                  description: The name of an Elastic Beanstalk solution stack to base the environment on.
+                PlatformArn:
+                  type: string
+                  description: The Amazon Resource Name (ARN) of the custom platform.
+                VersionLabel:
+                  type: string
+                  description: The name of the application version to deploy.
+                TemplateName:
+                  type: string
+                  description: The name of the Elastic Beanstalk configuration template.
+                OptionSettings:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      ResourceName:
+                        type: string
+                      Namespace:
+                        type: string
+                      OptionName:
+                        type: string
+                      Value:
+                        type: string
+                  description: Option values for the Elastic Beanstalk configuration.
+                Tags:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Key:
+                        type: string
+                      Value:
+                        type: string
+                  description: Specifies the tags applied to resources in the environment.
+      responses:
+        '200':
+          description: Successful response with the created environment details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '400':
+          description: Bad request error.
+  /#DescribeEnvironments:
+    get:
+      operationId: describeEnvironments
+      summary: Describe Environments
+      description: Returns descriptions for existing environments.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - DescribeEnvironments
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2010-12-01'
+        - name: ApplicationName
+          in: query
+          schema:
+            type: string
+          description: The name of the application associated with the environments.
+        - name: EnvironmentIds.member.1
+          in: query
+          schema:
+            type: string
+          description: An environment ID to describe.
+        - name: EnvironmentNames.member.1
+          in: query
+          schema:
+            type: string
+          description: An environment name to describe.
+        - name: IncludeDeleted
+          in: query
+          schema:
+            type: boolean
+          description: Indicates whether to include deleted environments.
+        - name: MaxRecords
+          in: query
+          schema:
+            type: integer
+          description: The maximum number of environments to return.
+        - name: NextToken
+          in: query
+          schema:
+            type: string
+          description: The pagination token for the next set of results.
+      responses:
+        '200':
+          description: Successful response with environment details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDescriptionsMessage'
+  /#UpdateEnvironment:
+    post:
+      operationId: updateEnvironment
+      summary: Update Environment
+      description: Updates the environment description, deploys a new application version, updates the configuration settings, or updates the stack to a new version.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - UpdateEnvironment
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2010-12-01'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                EnvironmentId:
+                  type: string
+                  description: The ID of the environment to update.
+                EnvironmentName:
+                  type: string
+                  description: The name of the environment to update.
+                Description:
+                  type: string
+                  description: A new description for the environment.
+                VersionLabel:
+                  type: string
+                  description: The application version to deploy to the running environment.
+                TemplateName:
+                  type: string
+                  description: The name of the configuration template to deploy.
+                SolutionStackName:
+                  type: string
+                  description: The name of the solution stack to update to.
+                PlatformArn:
+                  type: string
+                  description: The ARN of the platform to update to.
+                OptionSettings:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      ResourceName:
+                        type: string
+                      Namespace:
+                        type: string
+                      OptionName:
+                        type: string
+                      Value:
+                        type: string
+                  description: Updated configuration option values.
+      responses:
+        '200':
+          description: Successful response with the updated environment details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '400':
+          description: Bad request error.
+components:
+  schemas:
+    ApplicationDescriptionMessage:
+      type: object
+      properties:
+        Application:
+          $ref: '#/components/schemas/ApplicationDescription'
+    ApplicationDescriptionsMessage:
+      type: object
+      properties:
+        Applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationDescription'
+    ApplicationDescription:
+      type: object
+      properties:
+        ApplicationArn:
+          type: string
+          description: The Amazon Resource Name (ARN) of the application.
+        ApplicationName:
+          type: string
+          description: The name of the application.
+        Description:
+          type: string
+          description: User-defined description of the application.
+        DateCreated:
+          type: string
+          format: date-time
+          description: The date when the application was created.
+        DateUpdated:
+          type: string
+          format: date-time
+          description: The date when the application was last modified.
+        Versions:
+          type: array
+          items:
+            type: string
+          description: The names of the versions for this application.
+        ConfigurationTemplates:
+          type: array
+          items:
+            type: string
+          description: The names of the configuration templates associated with this application.
+        ResourceLifecycleConfig:
+          type: object
+          properties:
+            ServiceRole:
+              type: string
+            VersionLifecycleConfig:
+              type: object
+          description: The lifecycle settings for the application.
+    EnvironmentDescriptionsMessage:
+      type: object
+      properties:
+        Environments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
+        NextToken:
+          type: string
+    Environment:
+      type: object
+      properties:
+        EnvironmentId:
+          type: string
+          description: The ID of this environment.
+        EnvironmentName:
+          type: string
+          description: The name of this environment.
+        EnvironmentArn:
+          type: string
+          description: The ARN of this environment.
+        ApplicationName:
+          type: string
+          description: The name of the application associated with this environment.
+        VersionLabel:
+          type: string
+          description: The application version deployed in this environment.
+        SolutionStackName:
+          type: string
+          description: The name of the solution stack deployed with this environment.
+        PlatformArn:
+          type: string
+          description: The ARN of the platform version.
+        Description:
+          type: string
+          description: Describes this environment.
+        EndpointURL:
+          type: string
+          description: The URL to the LoadBalancer for this environment.
+        CNAME:
+          type: string
+          description: The URL to the CNAME for this environment.
+        DateCreated:
+          type: string
+          format: date-time
+          description: The creation date for this environment.
+        DateUpdated:
+          type: string
+          format: date-time
+          description: The last modified date for this environment.
+        Status:
+          type: string
+          enum:
+            - Aborting
+            - Launching
+            - Updating
+            - LinkingFrom
+            - LinkingTo
+            - Ready
+            - Terminating
+            - Terminated
+          description: The current operational status of the environment.
+        Health:
+          type: string
+          enum:
+            - Green
+            - Yellow
+            - Red
+            - Grey
+          description: Describes the health status of the environment.
+        HealthStatus:
+          type: string
+          enum:
+            - NoData
+            - Unknown
+            - Pending
+            - Ok
+            - Info
+            - Warning
+            - Degraded
+            - Severe
+            - Suspended
+          description: Returns the health status of the application running in your environment.
+        Tier:
+          type: object
+          properties:
+            Name:
+              type: string
+            Type:
+              type: string
+            Version:
+              type: string
+          description: Describes the current tier of this environment.
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication.
