@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: AWS Elastic Beanstalk API
+  title: Amazon Elastic Beanstalk AWS Elastic Beanstalk API
   description: AWS Elastic Beanstalk is a platform-as-a-service that makes it easy to deploy, manage, and scale web applications and services.
   version: '2010-12-01'
   contact:
@@ -17,7 +17,7 @@ paths:
   /:
     post:
       operationId: createApplication
-      summary: Create Application
+      summary: Amazon Elastic Beanstalk Create Application
       description: Creates an application that has one configuration template named default and no application versions.
       parameters:
         - name: Action
@@ -95,7 +95,7 @@ paths:
           description: Bad request error.
     get:
       operationId: describeApplications
-      summary: Describe Applications
+      summary: Amazon Elastic Beanstalk Describe Applications
       description: Returns the descriptions of existing applications.
       parameters:
         - name: Action
@@ -126,7 +126,7 @@ paths:
   /#CreateEnvironment:
     post:
       operationId: createEnvironment
-      summary: Create Environment
+      summary: Amazon Elastic Beanstalk Create Environment
       description: Launches an AWS Elastic Beanstalk environment for the specified application using the specified configuration.
       parameters:
         - name: Action
@@ -226,7 +226,7 @@ paths:
   /#DescribeEnvironments:
     get:
       operationId: describeEnvironments
-      summary: Describe Environments
+      summary: Amazon Elastic Beanstalk Describe Environments
       description: Returns descriptions for existing environments.
       parameters:
         - name: Action
@@ -282,7 +282,7 @@ paths:
   /#UpdateEnvironment:
     post:
       operationId: updateEnvironment
-      summary: Update Environment
+      summary: Amazon Elastic Beanstalk Update Environment
       description: Updates the environment description, deploys a new application version, updates the configuration settings, or updates the stack to a new version.
       parameters:
         - name: Action
