@@ -223,6 +223,8 @@ paths:
                 $ref: '#/components/schemas/Environment'
         '400':
           description: Bad request error.
+      tags:
+        - '#CreateEnvironment'
   /#DescribeEnvironments:
     get:
       operationId: describeEnvironments
@@ -279,6 +281,8 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EnvironmentDescriptionsMessage'
+      tags:
+        - '#DescribeEnvironments'
   /#UpdateEnvironment:
     post:
       operationId: updateEnvironment
@@ -348,6 +352,8 @@ paths:
                 $ref: '#/components/schemas/Environment'
         '400':
           description: Bad request error.
+      tags:
+        - '#UpdateEnvironment'
 components:
   schemas:
     ApplicationDescriptionMessage:
@@ -499,3 +505,7 @@ components:
       name: Authorization
       in: header
       description: AWS Signature Version 4 authentication.
+tags:
+  - name: '#CreateEnvironment'
+  - name: '#DescribeEnvironments'
+  - name: '#UpdateEnvironment'
