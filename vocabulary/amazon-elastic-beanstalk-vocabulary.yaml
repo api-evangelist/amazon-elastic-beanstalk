@@ -1,0 +1,116 @@
+vocabulary: 1.0.0
+info:
+  provider: Amazon Elastic Beanstalk
+  description: Unified vocabulary and taxonomy for Amazon Elastic Beanstalk APIs and capabilities
+  created: '2026-04-19'
+  modified: '2026-04-19'
+operational:
+  apis:
+  - name: Amazon Elastic Beanstalk AWS Elastic Beanstalk API
+    namespace: elastic_beanstalk
+    version: '2010-12-01'
+    baseUrl: https://elasticbeanstalk.amazonaws.com
+    status: active
+  resources:
+  - name: CreateEnvironment
+    api: Amazon Elastic Beanstalk
+    actions:
+    - POST
+  - name: DescribeEnvironments
+    api: Amazon Elastic Beanstalk
+    actions:
+    - GET
+  - name: UpdateEnvironment
+    api: Amazon Elastic Beanstalk
+    actions:
+    - POST
+  actions:
+  - verb: describe
+    httpMethod: GET
+    pattern: read
+  - verb: create
+    httpMethod: POST
+    pattern: write
+  - verb: update
+    httpMethod: POST
+    pattern: write
+  schemas:
+    core:
+    - name: ApplicationDescriptionMessage
+      description: ApplicationDescriptionMessage object
+    - name: ApplicationDescriptionsMessage
+      description: ApplicationDescriptionsMessage object
+    - name: ApplicationDescription
+      description: ApplicationDescription object
+    - name: EnvironmentDescriptionsMessage
+      description: EnvironmentDescriptionsMessage object
+    - name: Environment
+      description: Environment object
+  parameters:
+    pagination:
+    - name: MaxResults
+      description: Maximum number of results to return
+    - name: NextToken
+      description: Pagination token for next page of results
+    identifiers:
+    - name: Id
+      description: Resource identifier
+    - name: Arn
+      description: Amazon Resource Name
+  enums:
+    states:
+    - Active
+    - Inactive
+    - Pending
+    - Terminated
+  authentication:
+  - name: aws_sigv4
+    type: apiKey
+capability:
+  workflows:
+  - name: Amazon Elastic Beanstalk Management
+    file: capabilities/amazon-elastic-beanstalk-capability.yaml
+    description: Unified capability for managing Amazon Elastic Beanstalk resources. Combines Amazon Elastic Beanstalk APIs for Application Developer workflows in Application Deployment.
+    toolCount: 5
+  personas:
+  - id: developer
+    name: Application Developer
+    description: Developers building applications using Amazon Elastic Beanstalk
+  - id: operator
+    name: Cloud Operator
+    description: Operations teams managing Amazon Elastic Beanstalk infrastructure
+  domains:
+  - name: Amazon Elastic Beanstalk
+    description: Platform-as-a-service for deploying and managing web applications
+  namespaces:
+  - type: consumed
+    namespace: elastic_beanstalk
+  - type: rest
+    namespace: amazon-elastic-beanstalk-api
+  - type: mcp
+    namespace: amazon-elastic-beanstalk-mcp
+  binds:
+  - AWS_API_KEY
+  - AWS_REGION
+crossReference:
+- resource: CreateEnvironment
+  operations:
+  - describe
+  - create
+  - update
+  workflows:
+  - Amazon Elastic Beanstalk Management
+- resource: DescribeEnvironments
+  operations:
+  - describe
+  - create
+  - update
+  workflows:
+  - Amazon Elastic Beanstalk Management
+- resource: UpdateEnvironment
+  operations:
+  - describe
+  - create
+  - update
+  workflows:
+  - Amazon Elastic Beanstalk Management

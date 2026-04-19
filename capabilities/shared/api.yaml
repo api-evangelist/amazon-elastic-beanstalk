@@ -1,0 +1,278 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Elastic Beanstalk
+  description: Deploy, manage, and scale web applications
+  tags:
+  - Amazon Web Services
+  - Platform As A Service
+  - Deployment
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_API_KEY: AWS_API_KEY
+    AWS_REGION: AWS_REGION
+capability:
+  consumes:
+  - type: http
+    namespace: api
+    baseUri: https://elasticbeanstalk.amazonaws.com
+    description: Deploy, manage, and scale web applications
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{AWS_API_KEY}}'
+      placement: header
+    resources:
+    - name: Default
+      path: /default
+      description: Default resources
+      operations:
+      - name: describeApplications
+        method: GET
+        description: Amazon Elastic Beanstalk Describe Applications
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: Version
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: ApplicationNames.member.1
+          in: query
+          type: string
+          required: false
+          description: The name of an application to describe.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createApplication
+        method: POST
+        description: Amazon Elastic Beanstalk Create Application
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: Version
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: '#CreateEnvironment'
+      path: /createenvironment
+      description: '#CreateEnvironment resources'
+      operations:
+      - name: createEnvironment
+        method: POST
+        description: Amazon Elastic Beanstalk Create Environment
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: Version
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: '#DescribeEnvironments'
+      path: /describeenvironments
+      description: '#DescribeEnvironments resources'
+      operations:
+      - name: describeEnvironments
+        method: GET
+        description: Amazon Elastic Beanstalk Describe Environments
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: Version
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: ApplicationName
+          in: query
+          type: string
+          required: false
+          description: The name of the application associated with the environments.
+        - name: EnvironmentIds.member.1
+          in: query
+          type: string
+          required: false
+          description: An environment ID to describe.
+        - name: EnvironmentNames.member.1
+          in: query
+          type: string
+          required: false
+          description: An environment name to describe.
+        - name: IncludeDeleted
+          in: query
+          type: boolean
+          required: false
+          description: Indicates whether to include deleted environments.
+        - name: MaxRecords
+          in: query
+          type: integer
+          required: false
+          description: The maximum number of environments to return.
+        - name: NextToken
+          in: query
+          type: string
+          required: false
+          description: The pagination token for the next set of results.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: '#UpdateEnvironment'
+      path: /updateenvironment
+      description: '#UpdateEnvironment resources'
+      operations:
+      - name: updateEnvironment
+        method: POST
+        description: Amazon Elastic Beanstalk Update Environment
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: Version
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: api-api
+    resources:
+    - path: /v1/describeApplications
+      name: describeApplications
+      description: Amazon Elastic Beanstalk Describe Applications
+      operations:
+      - method: GET
+        name: describeApplications
+        description: Amazon Elastic Beanstalk Describe Applications
+        call: api.describeApplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/createApplication
+      name: createApplication
+      description: Amazon Elastic Beanstalk Create Application
+      operations:
+      - method: POST
+        name: createApplication
+        description: Amazon Elastic Beanstalk Create Application
+        call: api.createApplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/createEnvironment
+      name: createEnvironment
+      description: Amazon Elastic Beanstalk Create Environment
+      operations:
+      - method: POST
+        name: createEnvironment
+        description: Amazon Elastic Beanstalk Create Environment
+        call: api.createEnvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/describeEnvironments
+      name: describeEnvironments
+      description: Amazon Elastic Beanstalk Describe Environments
+      operations:
+      - method: GET
+        name: describeEnvironments
+        description: Amazon Elastic Beanstalk Describe Environments
+        call: api.describeEnvironments
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/updateEnvironment
+      name: updateEnvironment
+      description: Amazon Elastic Beanstalk Update Environment
+      operations:
+      - method: POST
+        name: updateEnvironment
+        description: Amazon Elastic Beanstalk Update Environment
+        call: api.updateEnvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: api-mcp
+    transport: http
+    tools:
+    - name: describeApplications
+      description: Amazon Elastic Beanstalk Describe Applications
+      hints:
+        readOnly: true
+      call: api.describeApplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createApplication
+      description: Amazon Elastic Beanstalk Create Application
+      hints:
+        readOnly: false
+      call: api.createApplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createEnvironment
+      description: Amazon Elastic Beanstalk Create Environment
+      hints:
+        readOnly: false
+      call: api.createEnvironment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describeEnvironments
+      description: Amazon Elastic Beanstalk Describe Environments
+      hints:
+        readOnly: true
+      call: api.describeEnvironments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateEnvironment
+      description: Amazon Elastic Beanstalk Update Environment
+      hints:
+        readOnly: false
+      call: api.updateEnvironment
+      outputParameters:
+      - type: object
+        mapping: $.

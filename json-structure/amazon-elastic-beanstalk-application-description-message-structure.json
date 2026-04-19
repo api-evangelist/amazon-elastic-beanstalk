@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-elastic-beanstalk/refs/heads/main/json-structure/amazon-elastic-beanstalk-application-description-message-structure.json",
+  "name": "ApplicationDescriptionMessage",
+  "description": "ApplicationDescriptionMessage schema from Amazon Elastic Beanstalk AWS Elastic Beanstalk API",
+  "type": "object",
+  "properties": {
+    "Application": {
+      "$ref": "#/components/schemas/ApplicationDescription"
+    }
+  }
+}

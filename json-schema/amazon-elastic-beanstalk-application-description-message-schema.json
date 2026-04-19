@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-elastic-beanstalk/refs/heads/main/json-schema/amazon-elastic-beanstalk-application-description-message-schema.json",
+  "title": "ApplicationDescriptionMessage",
+  "description": "ApplicationDescriptionMessage schema from Amazon Elastic Beanstalk AWS Elastic Beanstalk API",
+  "type": "object",
+  "properties": {
+    "Application": {
+      "$ref": "#/components/schemas/ApplicationDescription"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "EnvironmentId": "example-value",
+  "EnvironmentName": "example-value",
+  "EnvironmentArn": "example-value",
+  "ApplicationName": "example-value",
+  "VersionLabel": "example-value",
+  "SolutionStackName": "example-value",
+  "PlatformArn": "example-value",
+  "TemplateName": "example-value",
+  "Description": "example-value",
+  "EndpointURL": "example-value"
+}

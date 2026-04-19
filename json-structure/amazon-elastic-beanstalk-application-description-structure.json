@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-elastic-beanstalk/refs/heads/main/json-structure/amazon-elastic-beanstalk-application-description-structure.json",
+  "name": "ApplicationDescription",
+  "description": "ApplicationDescription schema from Amazon Elastic Beanstalk AWS Elastic Beanstalk API",
+  "type": "object",
+  "properties": {
+    "ApplicationArn": {
+      "type": "string",
+      "description": "The Amazon Resource Name (ARN) of the application."
+    },
+    "ApplicationName": {
+      "type": "string",
+      "description": "The name of the application."
+    },
+    "Description": {
+      "type": "string",
+      "description": "User-defined description of the application."
+    },
+    "DateCreated": {
+      "type": "datetime",
+      "description": "The date when the application was created."
+    },
+    "DateUpdated": {
+      "type": "datetime",
+      "description": "The date when the application was last modified."
+    },
+    "Versions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The names of the versions for this application."
+    },
+    "ConfigurationTemplates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The names of the configuration templates associated with this application."
+    },
+    "ResourceLifecycleConfig": {
+      "type": "object",
+      "properties": {
+        "ServiceRole": {
+          "type": "string"
+        },
+        "VersionLifecycleConfig": {
+          "type": "object"
+        }
+      },
+      "description": "The lifecycle settings for the application."
+    }
+  }
+}

@@ -11,8 +11,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://elasticbeanstalk.amazonaws.com
-    description: AWS Elastic Beanstalk API endpoint
+- url: https://elasticbeanstalk.amazonaws.com
+  description: AWS Elastic Beanstalk API endpoint
 paths:
   /:
     post:
@@ -20,26 +20,26 @@ paths:
       summary: Amazon Elastic Beanstalk Create Application
       description: Creates an application that has one configuration template named default and no application versions.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateApplication
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2010-12-01'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateApplication
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2010-12-01'
       requestBody:
         content:
           application/x-www-form-urlencoded:
             schema:
               type: object
               required:
-                - ApplicationName
+              - ApplicationName
               properties:
                 ApplicationName:
                   type: string
@@ -84,6 +84,15 @@ paths:
                       Value:
                         type: string
                   description: Specifies the tags applied to the application.
+            examples:
+              createApplicationRequestExample:
+                summary: Default createApplication request
+                x-microcks-default: true
+                value:
+                  ApplicationName: example-name
+                  Description: Example description
+                  ResourceLifecycleConfig: {}
+                  Tags: []
       responses:
         '200':
           description: Successful response with the created application details.
@@ -91,31 +100,45 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ApplicationDescriptionMessage'
+              examples:
+                createApplication200Example:
+                  summary: Default createApplication 200 response
+                  x-microcks-default: true
+                  value:
+                    Application:
+                      ApplicationArn: arn:aws:service:us-east-1:123456789012:resource/example
+                      ApplicationName: example-name
+                      Description: Example description
+                      DateCreated: '2025-01-15T00:00:00Z'
+                      DateUpdated: '2025-01-15T00:00:00Z'
         '400':
           description: Bad request error.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: describeApplications
       summary: Amazon Elastic Beanstalk Describe Applications
       description: Returns the descriptions of existing applications.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeApplications
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2010-12-01'
-        - name: ApplicationNames.member.1
-          in: query
-          schema:
-            type: string
-          description: The name of an application to describe.
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeApplications
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2010-12-01'
+      - name: ApplicationNames.member.1
+        in: query
+        schema:
+          type: string
+        description: The name of an application to describe.
       responses:
         '200':
           description: Successful response with application details.
@@ -123,32 +146,41 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ApplicationDescriptionsMessage'
+              examples:
+                describeApplications200Example:
+                  summary: Default describeApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    Applications: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /#CreateEnvironment:
     post:
       operationId: createEnvironment
       summary: Amazon Elastic Beanstalk Create Environment
       description: Launches an AWS Elastic Beanstalk environment for the specified application using the specified configuration.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateEnvironment
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2010-12-01'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateEnvironment
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2010-12-01'
       requestBody:
         content:
           application/x-www-form-urlencoded:
             schema:
               type: object
               required:
-                - ApplicationName
+              - ApplicationName
               properties:
                 ApplicationName:
                   type: string
@@ -168,13 +200,13 @@ paths:
                     Name:
                       type: string
                       enum:
-                        - WebServer
-                        - Worker
+                      - WebServer
+                      - Worker
                     Type:
                       type: string
                       enum:
-                        - Standard
-                        - SQS/HTTP
+                      - Standard
+                      - SQS/HTTP
                     Version:
                       type: string
                   description: Specifies the tier to use in creating this environment.
@@ -214,6 +246,16 @@ paths:
                       Value:
                         type: string
                   description: Specifies the tags applied to resources in the environment.
+            examples:
+              createEnvironmentRequestExample:
+                summary: Default createEnvironment request
+                x-microcks-default: true
+                value:
+                  ApplicationName: example-name
+                  EnvironmentName: example-name
+                  Description: Example description
+                  CNAMEPrefix: example-name
+                  Tier: {}
       responses:
         '200':
           description: Successful response with the created environment details.
@@ -221,59 +263,72 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Environment'
+              examples:
+                createEnvironment200Example:
+                  summary: Default createEnvironment 200 response
+                  x-microcks-default: true
+                  value:
+                    EnvironmentId: example-id-12345
+                    EnvironmentName: example-name
+                    EnvironmentArn: arn:aws:service:us-east-1:123456789012:resource/example
+                    ApplicationName: example-name
+                    VersionLabel: '2025-01-01'
         '400':
           description: Bad request error.
       tags:
-        - '#CreateEnvironment'
+      - '#CreateEnvironment'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /#DescribeEnvironments:
     get:
       operationId: describeEnvironments
       summary: Amazon Elastic Beanstalk Describe Environments
       description: Returns descriptions for existing environments.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeEnvironments
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2010-12-01'
-        - name: ApplicationName
-          in: query
-          schema:
-            type: string
-          description: The name of the application associated with the environments.
-        - name: EnvironmentIds.member.1
-          in: query
-          schema:
-            type: string
-          description: An environment ID to describe.
-        - name: EnvironmentNames.member.1
-          in: query
-          schema:
-            type: string
-          description: An environment name to describe.
-        - name: IncludeDeleted
-          in: query
-          schema:
-            type: boolean
-          description: Indicates whether to include deleted environments.
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-          description: The maximum number of environments to return.
-        - name: NextToken
-          in: query
-          schema:
-            type: string
-          description: The pagination token for the next set of results.
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeEnvironments
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2010-12-01'
+      - name: ApplicationName
+        in: query
+        schema:
+          type: string
+        description: The name of the application associated with the environments.
+      - name: EnvironmentIds.member.1
+        in: query
+        schema:
+          type: string
+        description: An environment ID to describe.
+      - name: EnvironmentNames.member.1
+        in: query
+        schema:
+          type: string
+        description: An environment name to describe.
+      - name: IncludeDeleted
+        in: query
+        schema:
+          type: boolean
+        description: Indicates whether to include deleted environments.
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+        description: The maximum number of environments to return.
+      - name: NextToken
+        in: query
+        schema:
+          type: string
+        description: The pagination token for the next set of results.
       responses:
         '200':
           description: Successful response with environment details.
@@ -281,27 +336,37 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/EnvironmentDescriptionsMessage'
+              examples:
+                describeEnvironments200Example:
+                  summary: Default describeEnvironments 200 response
+                  x-microcks-default: true
+                  value:
+                    Environments: []
+                    NextToken: example
       tags:
-        - '#DescribeEnvironments'
+      - '#DescribeEnvironments'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /#UpdateEnvironment:
     post:
       operationId: updateEnvironment
       summary: Amazon Elastic Beanstalk Update Environment
       description: Updates the environment description, deploys a new application version, updates the configuration settings, or updates the stack to a new version.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - UpdateEnvironment
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2010-12-01'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - UpdateEnvironment
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2010-12-01'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -343,6 +408,16 @@ paths:
                       Value:
                         type: string
                   description: Updated configuration option values.
+            examples:
+              updateEnvironmentRequestExample:
+                summary: Default updateEnvironment request
+                x-microcks-default: true
+                value:
+                  EnvironmentId: example-id-12345
+                  EnvironmentName: example-name
+                  Description: Example description
+                  VersionLabel: '2025-01-01'
+                  TemplateName: example-name
       responses:
         '200':
           description: Successful response with the updated environment details.
@@ -350,10 +425,23 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Environment'
+              examples:
+                updateEnvironment200Example:
+                  summary: Default updateEnvironment 200 response
+                  x-microcks-default: true
+                  value:
+                    EnvironmentId: example-id-12345
+                    EnvironmentName: example-name
+                    EnvironmentArn: arn:aws:service:us-east-1:123456789012:resource/example
+                    ApplicationName: example-name
+                    VersionLabel: '2025-01-01'
         '400':
           description: Bad request error.
       tags:
-        - '#UpdateEnvironment'
+      - '#UpdateEnvironment'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     ApplicationDescriptionMessage:
@@ -459,35 +547,35 @@ components:
         Status:
           type: string
           enum:
-            - Aborting
-            - Launching
-            - Updating
-            - LinkingFrom
-            - LinkingTo
-            - Ready
-            - Terminating
-            - Terminated
+          - Aborting
+          - Launching
+          - Updating
+          - LinkingFrom
+          - LinkingTo
+          - Ready
+          - Terminating
+          - Terminated
           description: The current operational status of the environment.
         Health:
           type: string
           enum:
-            - Green
-            - Yellow
-            - Red
-            - Grey
+          - Green
+          - Yellow
+          - Red
+          - Grey
           description: Describes the health status of the environment.
         HealthStatus:
           type: string
           enum:
-            - NoData
-            - Unknown
-            - Pending
-            - Ok
-            - Info
-            - Warning
-            - Degraded
-            - Severe
-            - Suspended
+          - NoData
+          - Unknown
+          - Pending
+          - Ok
+          - Info
+          - Warning
+          - Degraded
+          - Severe
+          - Suspended
           description: Returns the health status of the application running in your environment.
         Tier:
           type: object
@@ -506,6 +594,6 @@ components:
       in: header
       description: AWS Signature Version 4 authentication.
 tags:
-  - name: '#CreateEnvironment'
-  - name: '#DescribeEnvironments'
-  - name: '#UpdateEnvironment'
+- name: '#CreateEnvironment'
+- name: '#DescribeEnvironments'
+- name: '#UpdateEnvironment'

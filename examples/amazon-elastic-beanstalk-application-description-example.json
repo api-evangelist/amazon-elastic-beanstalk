@@ -1,0 +1,17 @@
+{
+  "ApplicationArn": "example-value",
+  "ApplicationName": "example-value",
+  "Description": "example-value",
+  "DateCreated": "2025-01-15T00:00:00Z",
+  "DateUpdated": "2025-01-15T00:00:00Z",
+  "Versions": [
+    "example-value"
+  ],
+  "ConfigurationTemplates": [
+    "example-value"
+  ],
+  "ResourceLifecycleConfig": {
+    "ServiceRole": "example-value",
+    "VersionLifecycleConfig": {}
+  }
+}
