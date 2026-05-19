@@ -1,0 +1,96 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: 'Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #CreateEnvironment'
+  description: 'Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #CreateEnvironment. 1 operations. Lead operation: Amazon
+    Elastic Beanstalk Create Environment. Self-contained Naftiko capability covering one Amazon Elastic Beanstalk business
+    surface.'
+  tags:
+  - Amazon Elastic Beanstalk
+  - '#CreateEnvironment'
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_ELASTIC_BEANSTALK_API_KEY: AMAZON_ELASTIC_BEANSTALK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-elastic-beanstalk-createenvironment
+    baseUri: https://elasticbeanstalk.amazonaws.com
+    description: 'Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #CreateEnvironment business capability. Self-contained,
+      no shared references.'
+    resources:
+    - name: '#CreateEnvironment'
+      path: /#CreateEnvironment
+      operations:
+      - name: createenvironment
+        method: POST
+        description: Amazon Elastic Beanstalk Create Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_ELASTIC_BEANSTALK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-elastic-beanstalk-createenvironment-rest
+    port: 8080
+    description: 'REST adapter for Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #CreateEnvironment. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.'
+    resources:
+    - path: /v1/createenvironment
+      name: createenvironment
+      description: 'REST surface for #CreateEnvironment.'
+      operations:
+      - method: POST
+        name: createenvironment
+        description: Amazon Elastic Beanstalk Create Environment
+        call: amazon-elastic-beanstalk-createenvironment.createenvironment
+        with:
+          Action: rest.Action
+          Version: rest.Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-elastic-beanstalk-createenvironment-mcp
+    port: 9090
+    transport: http
+    description: 'MCP adapter for Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #CreateEnvironment. One tool per consumed
+      operation, routed inline through this capability''s consumes block.'
+    tools:
+    - name: amazon-elastic-beanstalk-create-environment
+      description: Amazon Elastic Beanstalk Create Environment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-elastic-beanstalk-createenvironment.createenvironment
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

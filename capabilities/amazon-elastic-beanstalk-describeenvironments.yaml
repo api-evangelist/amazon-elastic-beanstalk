@@ -1,0 +1,125 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: 'Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #DescribeEnvironments'
+  description: 'Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #DescribeEnvironments. 1 operations. Lead operation:
+    Amazon Elastic Beanstalk Describe Environments. Self-contained Naftiko capability covering one Amazon Elastic Beanstalk
+    business surface.'
+  tags:
+  - Amazon Elastic Beanstalk
+  - '#DescribeEnvironments'
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_ELASTIC_BEANSTALK_API_KEY: AMAZON_ELASTIC_BEANSTALK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-elastic-beanstalk-describeenvironments
+    baseUri: https://elasticbeanstalk.amazonaws.com
+    description: 'Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #DescribeEnvironments business capability. Self-contained,
+      no shared references.'
+    resources:
+    - name: '#DescribeEnvironments'
+      path: /#DescribeEnvironments
+      operations:
+      - name: describeenvironments
+        method: GET
+        description: Amazon Elastic Beanstalk Describe Environments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: ApplicationName
+          in: query
+          type: string
+          description: The name of the application associated with the environments.
+        - name: EnvironmentIds.member.1
+          in: query
+          type: string
+          description: An environment ID to describe.
+        - name: EnvironmentNames.member.1
+          in: query
+          type: string
+          description: An environment name to describe.
+        - name: IncludeDeleted
+          in: query
+          type: boolean
+          description: Indicates whether to include deleted environments.
+        - name: MaxRecords
+          in: query
+          type: integer
+          description: The maximum number of environments to return.
+        - name: NextToken
+          in: query
+          type: string
+          description: The pagination token for the next set of results.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_ELASTIC_BEANSTALK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-elastic-beanstalk-describeenvironments-rest
+    port: 8080
+    description: 'REST adapter for Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #DescribeEnvironments. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.'
+    resources:
+    - path: /v1/describeenvironments
+      name: describeenvironments
+      description: 'REST surface for #DescribeEnvironments.'
+      operations:
+      - method: GET
+        name: describeenvironments
+        description: Amazon Elastic Beanstalk Describe Environments
+        call: amazon-elastic-beanstalk-describeenvironments.describeenvironments
+        with:
+          Action: rest.Action
+          Version: rest.Version
+          ApplicationName: rest.ApplicationName
+          EnvironmentIds.member.1: rest.EnvironmentIds.member.1
+          EnvironmentNames.member.1: rest.EnvironmentNames.member.1
+          IncludeDeleted: rest.IncludeDeleted
+          MaxRecords: rest.MaxRecords
+          NextToken: rest.NextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-elastic-beanstalk-describeenvironments-mcp
+    port: 9090
+    transport: http
+    description: 'MCP adapter for Amazon Elastic Beanstalk AWS Elastic Beanstalk API — #DescribeEnvironments. One tool per
+      consumed operation, routed inline through this capability''s consumes block.'
+    tools:
+    - name: amazon-elastic-beanstalk-describe-environments
+      description: Amazon Elastic Beanstalk Describe Environments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-elastic-beanstalk-describeenvironments.describeenvironments
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        ApplicationName: tools.ApplicationName
+        EnvironmentIds.member.1: tools.EnvironmentIds.member.1
+        EnvironmentNames.member.1: tools.EnvironmentNames.member.1
+        IncludeDeleted: tools.IncludeDeleted
+        MaxRecords: tools.MaxRecords
+        NextToken: tools.NextToken
+      outputParameters:
+      - type: object
+        mapping: $.

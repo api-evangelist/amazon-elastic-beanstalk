@@ -1,10 +1,11 @@
 name: Amazon Elastic Beanstalk
-description: AWS Elastic Beanstalk is a platform-as-a-service (PaaS) that makes it easy to deploy, manage, and scale web applications and services. You simply upload your code and Elastic Beanstalk 
-  automatically handles the deployment, capacity provisioning, load balancing, auto-scaling, and application health monitoring.
+description: AWS Elastic Beanstalk is a platform-as-a-service (PaaS) that makes it easy to deploy, manage, and scale web applications
+  and services. You simply upload your code and Elastic Beanstalk automatically handles the deployment, capacity provisioning,
+  load balancing, auto-scaling, and application health monitoring.
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 url: https://aws.amazon.com/elasticbeanstalk/
 created: '2024-01-15'
-modified: '2026-04-19'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 tags:
 - Amazon Web Services
@@ -17,7 +18,8 @@ tags:
 - Web Applications
 apis:
 - name: AWS Elastic Beanstalk API
-  description: API for managing AWS Elastic Beanstalk applications, environments, and related resources including configuration templates and application versions.
+  description: API for managing AWS Elastic Beanstalk applications, environments, and related resources including configuration
+    templates and application versions.
   humanURL: https://aws.amazon.com/elasticbeanstalk/
   baseURL: https://elasticbeanstalk.amazonaws.com
   tags:
@@ -46,6 +48,14 @@ apis:
     url: json-schema/amazon-elastic-beanstalk-application-descriptions-message-schema.json
   - type: JSONLD
     url: json-ld/amazon-elastic-beanstalk-context.jsonld
+  - type: NaftikoCapability
+    url: capabilities/amazon-elastic-beanstalk-createenvironment.yaml
+  - type: NaftikoCapability
+    url: capabilities/amazon-elastic-beanstalk-describeenvironments.yaml
+  - type: NaftikoCapability
+    url: capabilities/amazon-elastic-beanstalk-updateenvironment.yaml
+  - type: NaftikoCapability
+    url: capabilities/amazon-elastic-beanstalk-general.yaml
 common:
 - type: Portal
   url: https://aws.amazon.com/
@@ -87,10 +97,6 @@ common:
   url: https://aws.amazon.com/contact-us/
 - type: SpectralRules
   url: rules/amazon-elastic-beanstalk-spectral-rules.yml
-- type: NaftikoCapability
-  url: capabilities/amazon-elastic-beanstalk-capability.yaml
-- type: NaftikoCapability
-  url: capabilities/shared/api.yaml
 - type: Vocabulary
   url: vocabulary/amazon-elastic-beanstalk-vocabulary.yaml
 - type: Features
@@ -130,15 +136,15 @@ common:
 - type: Integrations
   url: https://aws.amazon.com/marketplace
 integrations:
-  - name: Sign in
-  - name: Agent Mode
-  - name: 'Why AWS Marketplace?'
-  - name: Get started in AWS Marketplace
-  - name: Industry
-  - name: Resources
-  - name: Become a Channel Partner
-  - name: Sell in AWS Marketplace
-  - name: Manage Your Account
+- name: Sign in
+- name: Agent Mode
+- name: Why AWS Marketplace?
+- name: Get started in AWS Marketplace
+- name: Industry
+- name: Resources
+- name: Become a Channel Partner
+- name: Sell in AWS Marketplace
+- name: Manage Your Account
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
