@@ -1,0 +1,148 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Elastic Beanstalk Deploy Version With Rollback
+  summary: Deploy a new version, poll the rollout, and roll back to the previous version if it fails.
+  description: >-
+    A safer deployment flow that captures the environment's currently deployed
+    version before rolling out a new one. It deploys the new application version
+    with UpdateEnvironment, polls the environment, and branches: when the
+    environment returns to Ready the deployment is accepted, but when the
+    environment lands in a terminal Terminated status the flow redeploys the
+    previously recorded version to roll back. Every step spells out its AWS
+    query-protocol request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: elasticBeanstalkApi
+  url: ../openapi/amazon-elastic-beanstalk-openapi.yml
+  type: openapi
+workflows:
+- workflowId: deploy-version-with-rollback
+  summary: Deploy a version and roll back to the prior version if the rollout fails.
+  description: >-
+    Records the current version, deploys the new version, polls the rollout, and
+    on a terminal failure redeploys the previously recorded version.
+  inputs:
+    type: object
+    required:
+    - environmentName
+    - versionLabel
+    properties:
+      environmentName:
+        type: string
+        description: The name of the environment to deploy to.
+      versionLabel:
+        type: string
+        description: The new application version label to deploy.
+  steps:
+  - stepId: recordCurrentVersion
+    description: >-
+      Describe the environment to record its currently deployed version so it
+      can be restored if the new deployment fails.
+    operationId: describeEnvironments
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeEnvironments
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: EnvironmentNames.member.1
+      in: query
+      value: $inputs.environmentName
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.Environments[0].Status == "Ready"
+      type: jsonpath
+    outputs:
+      environmentId: $response.body#/Environments/0/EnvironmentId
+      previousVersion: $response.body#/Environments/0/VersionLabel
+  - stepId: deployNewVersion
+    description: Deploy the new application version to the environment.
+    operationId: updateEnvironment
+    parameters:
+    - name: Action
+      in: query
+      value: UpdateEnvironment
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        EnvironmentName: $inputs.environmentName
+        VersionLabel: $inputs.versionLabel
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/Status
+  - stepId: pollDeployment
+    description: >-
+      Describe the environment and branch on its status — loop back while it is
+      still Updating, end when it returns to Ready, and roll back on a terminal
+      Terminated status.
+    operationId: describeEnvironments
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeEnvironments
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: EnvironmentNames.member.1
+      in: query
+      value: $inputs.environmentName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/Environments/0/Status
+      versionLabel: $response.body#/Environments/0/VersionLabel
+    onSuccess:
+    - name: deploymentComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Ready"
+        type: jsonpath
+    - name: deploymentFailedRollback
+      type: goto
+      stepId: rollbackVersion
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Terminated"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollDeployment
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Updating"
+        type: jsonpath
+  - stepId: rollbackVersion
+    description: >-
+      Redeploy the previously recorded version to roll the environment back to a
+      known-good state after a failed deployment.
+    operationId: updateEnvironment
+    parameters:
+    - name: Action
+      in: query
+      value: UpdateEnvironment
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        EnvironmentName: $inputs.environmentName
+        VersionLabel: $steps.recordCurrentVersion.outputs.previousVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/Status
+      restoredVersion: $response.body#/VersionLabel
+  outputs:
+    environmentId: $steps.recordCurrentVersion.outputs.environmentId
+    previousVersion: $steps.recordCurrentVersion.outputs.previousVersion
+    finalStatus: $steps.pollDeployment.outputs.status
+    rolledBackVersion: $steps.rollbackVersion.outputs.restoredVersion

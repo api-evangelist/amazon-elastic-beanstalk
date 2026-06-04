@@ -1,0 +1,128 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Elastic Beanstalk Deploy Version To Environment
+  summary: Deploy an application version to a running environment and poll until the update completes.
+  description: >-
+    The standard Elastic Beanstalk deployment flow. It confirms the target
+    environment is currently Ready, deploys a new application version to it via
+    UpdateEnvironment, and then polls the environment description until the
+    update finishes and the environment returns to Ready (branching out on a
+    terminal Terminated status). Every step spells out its AWS query-protocol
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: elasticBeanstalkApi
+  url: ../openapi/amazon-elastic-beanstalk-openapi.yml
+  type: openapi
+workflows:
+- workflowId: deploy-version-to-environment
+  summary: Deploy a new application version to an environment and wait for it to stabilize.
+  description: >-
+    Verifies the environment is Ready, deploys the supplied version label with
+    UpdateEnvironment, then polls until the environment status returns to Ready.
+  inputs:
+    type: object
+    required:
+    - environmentName
+    - versionLabel
+    properties:
+      environmentName:
+        type: string
+        description: The name of the environment to deploy the version to.
+      versionLabel:
+        type: string
+        description: The application version label to deploy to the running environment.
+  steps:
+  - stepId: checkEnvironmentReady
+    description: >-
+      Describe the environment to confirm it exists and is currently Ready
+      before starting a deployment.
+    operationId: describeEnvironments
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeEnvironments
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: EnvironmentNames.member.1
+      in: query
+      value: $inputs.environmentName
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.Environments[0].Status == "Ready"
+      type: jsonpath
+    outputs:
+      environmentId: $response.body#/Environments/0/EnvironmentId
+      currentVersion: $response.body#/Environments/0/VersionLabel
+  - stepId: deployVersion
+    description: >-
+      Deploy the new application version to the running environment by updating
+      its VersionLabel.
+    operationId: updateEnvironment
+    parameters:
+    - name: Action
+      in: query
+      value: UpdateEnvironment
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        EnvironmentName: $inputs.environmentName
+        VersionLabel: $inputs.versionLabel
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      environmentId: $response.body#/EnvironmentId
+      status: $response.body#/Status
+  - stepId: pollDeployment
+    description: >-
+      Describe the environment and branch on its status — loop back while it is
+      still Updating, end when it returns to Ready, and fail on a terminal
+      Terminated status.
+    operationId: describeEnvironments
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeEnvironments
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: EnvironmentNames.member.1
+      in: query
+      value: $inputs.environmentName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/Environments/0/Status
+      health: $response.body#/Environments/0/Health
+      versionLabel: $response.body#/Environments/0/VersionLabel
+    onSuccess:
+    - name: deploymentComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Ready"
+        type: jsonpath
+    - name: deploymentFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Terminated"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollDeployment
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Updating"
+        type: jsonpath
+  outputs:
+    environmentId: $steps.deployVersion.outputs.environmentId
+    deployedVersion: $steps.pollDeployment.outputs.versionLabel
+    environmentStatus: $steps.pollDeployment.outputs.status
+    environmentHealth: $steps.pollDeployment.outputs.health

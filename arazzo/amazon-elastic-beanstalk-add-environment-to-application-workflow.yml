@@ -1,0 +1,147 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Elastic Beanstalk Add Environment To Application
+  summary: Confirm an existing application, launch an additional environment for it, and poll until Ready.
+  description: >-
+    A blue/green-style flow that stands up an additional environment for an
+    application that already exists. It first verifies the application is present
+    with DescribeApplications, then launches a new environment for it on the
+    supplied solution stack and application version, and finally polls the
+    environment description until its status reaches Ready. Every step spells out
+    its AWS query-protocol request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: elasticBeanstalkApi
+  url: ../openapi/amazon-elastic-beanstalk-openapi.yml
+  type: openapi
+workflows:
+- workflowId: add-environment-to-application
+  summary: Launch an additional environment for an existing application and wait for Ready.
+  description: >-
+    Confirms the application exists, launches a new environment for it, then
+    polls until the environment status reaches Ready.
+  inputs:
+    type: object
+    required:
+    - applicationName
+    - environmentName
+    - solutionStackName
+    properties:
+      applicationName:
+        type: string
+        description: The name of the existing application to add an environment to.
+      environmentName:
+        type: string
+        description: A unique name for the new environment.
+      environmentDescription:
+        type: string
+        description: An optional description for the new environment.
+      cnamePrefix:
+        type: string
+        description: Optional CNAME prefix the new environment will attempt to use.
+      solutionStackName:
+        type: string
+        description: The Elastic Beanstalk solution stack to base the environment on.
+      versionLabel:
+        type: string
+        description: Optional application version label to deploy at launch.
+  steps:
+  - stepId: confirmApplication
+    description: >-
+      Describe the application to confirm it exists before launching a new
+      environment for it.
+    operationId: describeApplications
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeApplications
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: ApplicationNames.member.1
+      in: query
+      value: $inputs.applicationName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationArn: $response.body#/Applications/0/ApplicationArn
+      applicationName: $response.body#/Applications/0/ApplicationName
+  - stepId: launchEnvironment
+    description: >-
+      Launch a new environment for the confirmed application on the supplied
+      solution stack.
+    operationId: createEnvironment
+    parameters:
+    - name: Action
+      in: query
+      value: CreateEnvironment
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        ApplicationName: $inputs.applicationName
+        EnvironmentName: $inputs.environmentName
+        Description: $inputs.environmentDescription
+        CNAMEPrefix: $inputs.cnamePrefix
+        SolutionStackName: $inputs.solutionStackName
+        VersionLabel: $inputs.versionLabel
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      environmentId: $response.body#/EnvironmentId
+      environmentName: $response.body#/EnvironmentName
+      status: $response.body#/Status
+  - stepId: pollEnvironment
+    description: >-
+      Describe the environment and branch on its status — loop back while it is
+      still Launching, end when it reaches Ready, and fail on a terminal
+      Terminated status.
+    operationId: describeEnvironments
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeEnvironments
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: ApplicationName
+      in: query
+      value: $inputs.applicationName
+    - name: EnvironmentIds.member.1
+      in: query
+      value: $steps.launchEnvironment.outputs.environmentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/Environments/0/Status
+      health: $response.body#/Environments/0/Health
+      endpointURL: $response.body#/Environments/0/EndpointURL
+      cname: $response.body#/Environments/0/CNAME
+    onSuccess:
+    - name: environmentReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Ready"
+        type: jsonpath
+    - name: environmentFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Terminated"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollEnvironment
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Launching"
+        type: jsonpath
+  outputs:
+    applicationArn: $steps.confirmApplication.outputs.applicationArn
+    environmentId: $steps.launchEnvironment.outputs.environmentId
+    environmentStatus: $steps.pollEnvironment.outputs.status
+    endpointURL: $steps.pollEnvironment.outputs.endpointURL

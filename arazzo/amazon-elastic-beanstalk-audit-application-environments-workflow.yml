@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Elastic Beanstalk Audit Application Environments
+  summary: Resolve an application and inventory all of its environments with their status and health.
+  description: >-
+    A read-only audit flow that resolves an application and enumerates the
+    environments running under it. It describes the application to confirm it
+    exists and capture its versions and configuration templates, then describes
+    the environments associated with that application to report each one's
+    status, health, deployed version, and endpoint. Every step spells out its AWS
+    query-protocol request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: elasticBeanstalkApi
+  url: ../openapi/amazon-elastic-beanstalk-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-application-environments
+  summary: Inventory an application and all of its environments.
+  description: >-
+    Confirms the application exists and captures its metadata, then lists the
+    environments associated with it along with their status and health.
+  inputs:
+    type: object
+    required:
+    - applicationName
+    properties:
+      applicationName:
+        type: string
+        description: The name of the application to audit.
+      includeDeleted:
+        type: boolean
+        description: Whether to include deleted environments in the inventory.
+      maxRecords:
+        type: integer
+        description: The maximum number of environments to return.
+  steps:
+  - stepId: resolveApplication
+    description: >-
+      Describe the application to confirm it exists and capture its versions and
+      configuration templates.
+    operationId: describeApplications
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeApplications
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: ApplicationNames.member.1
+      in: query
+      value: $inputs.applicationName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationArn: $response.body#/Applications/0/ApplicationArn
+      versions: $response.body#/Applications/0/Versions
+      configurationTemplates: $response.body#/Applications/0/ConfigurationTemplates
+  - stepId: listEnvironments
+    description: >-
+      Describe the environments associated with the application to report each
+      one's status, health, deployed version, and endpoint.
+    operationId: describeEnvironments
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeEnvironments
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: ApplicationName
+      in: query
+      value: $inputs.applicationName
+    - name: IncludeDeleted
+      in: query
+      value: $inputs.includeDeleted
+    - name: MaxRecords
+      in: query
+      value: $inputs.maxRecords
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      environments: $response.body#/Environments
+      firstEnvironmentStatus: $response.body#/Environments/0/Status
+      firstEnvironmentHealth: $response.body#/Environments/0/Health
+      nextToken: $response.body#/NextToken
+  outputs:
+    applicationArn: $steps.resolveApplication.outputs.applicationArn
+    versions: $steps.resolveApplication.outputs.versions
+    configurationTemplates: $steps.resolveApplication.outputs.configurationTemplates
+    environments: $steps.listEnvironments.outputs.environments
+    nextToken: $steps.listEnvironments.outputs.nextToken

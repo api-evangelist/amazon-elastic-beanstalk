@@ -1,0 +1,153 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Elastic Beanstalk Provision Application And Environment
+  summary: Create an application, launch an environment for it, and poll until the environment is Ready.
+  description: >-
+    The core Elastic Beanstalk provisioning flow. It creates a new application,
+    launches an environment for that application on a chosen solution stack, and
+    then polls the environment description until its operational status reaches
+    Ready (or fails if it lands in a terminal failure state). Every step spells
+    out its AWS query-protocol request inline — the Action and Version query
+    parameters plus a form-urlencoded body — so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: elasticBeanstalkApi
+  url: ../openapi/amazon-elastic-beanstalk-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-application-environment
+  summary: Create an application, launch an environment, and wait for it to become Ready.
+  description: >-
+    Creates the application, launches an environment on the supplied solution
+    stack, then repeatedly describes the environment until its status is Ready.
+  inputs:
+    type: object
+    required:
+    - applicationName
+    - environmentName
+    - solutionStackName
+    properties:
+      applicationName:
+        type: string
+        description: The unique name of the application to create.
+      applicationDescription:
+        type: string
+        description: An optional description for the application.
+      environmentName:
+        type: string
+        description: A unique name for the environment to launch.
+      environmentDescription:
+        type: string
+        description: An optional description for the environment.
+      cnamePrefix:
+        type: string
+        description: Optional CNAME prefix the environment will attempt to use.
+      solutionStackName:
+        type: string
+        description: The Elastic Beanstalk solution stack to base the environment on.
+      versionLabel:
+        type: string
+        description: Optional application version label to deploy at launch.
+  steps:
+  - stepId: createApplication
+    description: >-
+      Create the application that has one default configuration template and no
+      application versions yet.
+    operationId: createApplication
+    parameters:
+    - name: Action
+      in: query
+      value: CreateApplication
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        ApplicationName: $inputs.applicationName
+        Description: $inputs.applicationDescription
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationArn: $response.body#/Application/ApplicationArn
+      applicationName: $response.body#/Application/ApplicationName
+  - stepId: createEnvironment
+    description: >-
+      Launch an environment for the new application on the supplied solution
+      stack, optionally deploying an application version.
+    operationId: createEnvironment
+    parameters:
+    - name: Action
+      in: query
+      value: CreateEnvironment
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        ApplicationName: $steps.createApplication.outputs.applicationName
+        EnvironmentName: $inputs.environmentName
+        Description: $inputs.environmentDescription
+        CNAMEPrefix: $inputs.cnamePrefix
+        SolutionStackName: $inputs.solutionStackName
+        VersionLabel: $inputs.versionLabel
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      environmentId: $response.body#/EnvironmentId
+      environmentName: $response.body#/EnvironmentName
+      status: $response.body#/Status
+  - stepId: pollEnvironment
+    description: >-
+      Describe the environment and branch on its status — loop back while it is
+      still Launching, end when it reaches Ready, and fail on a terminal
+      Terminated status.
+    operationId: describeEnvironments
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeEnvironments
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: ApplicationName
+      in: query
+      value: $steps.createApplication.outputs.applicationName
+    - name: EnvironmentIds.member.1
+      in: query
+      value: $steps.createEnvironment.outputs.environmentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/Environments/0/Status
+      health: $response.body#/Environments/0/Health
+      endpointURL: $response.body#/Environments/0/EndpointURL
+      cname: $response.body#/Environments/0/CNAME
+    onSuccess:
+    - name: environmentReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Ready"
+        type: jsonpath
+    - name: environmentFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Terminated"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollEnvironment
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Launching"
+        type: jsonpath
+  outputs:
+    applicationArn: $steps.createApplication.outputs.applicationArn
+    environmentId: $steps.createEnvironment.outputs.environmentId
+    environmentStatus: $steps.pollEnvironment.outputs.status
+    environmentHealth: $steps.pollEnvironment.outputs.health
+    endpointURL: $steps.pollEnvironment.outputs.endpointURL

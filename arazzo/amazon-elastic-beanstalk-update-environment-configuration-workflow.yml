@@ -1,0 +1,137 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Elastic Beanstalk Update Environment Configuration
+  summary: Apply configuration option settings to a running environment and poll until the change settles.
+  description: >-
+    Reconfigures a running Elastic Beanstalk environment by applying a set of
+    configuration option settings (namespace / option name / value triples) via
+    UpdateEnvironment, then polls the environment description until the
+    configuration change finishes and the environment returns to Ready. Every
+    step spells out its AWS query-protocol request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: elasticBeanstalkApi
+  url: ../openapi/amazon-elastic-beanstalk-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-environment-configuration
+  summary: Apply option settings to an environment and wait for it to stabilize.
+  description: >-
+    Confirms the environment is Ready, applies the supplied OptionSettings with
+    UpdateEnvironment, then polls until the environment status returns to Ready.
+  inputs:
+    type: object
+    required:
+    - environmentName
+    - optionSettings
+    properties:
+      environmentName:
+        type: string
+        description: The name of the environment to reconfigure.
+      optionSettings:
+        type: array
+        description: >-
+          The configuration option values to apply. Each item is an object with
+          Namespace, OptionName, and Value (and optional ResourceName).
+        items:
+          type: object
+          properties:
+            ResourceName:
+              type: string
+            Namespace:
+              type: string
+            OptionName:
+              type: string
+            Value:
+              type: string
+  steps:
+  - stepId: checkEnvironmentReady
+    description: >-
+      Describe the environment to confirm it exists and is currently Ready
+      before applying configuration changes.
+    operationId: describeEnvironments
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeEnvironments
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: EnvironmentNames.member.1
+      in: query
+      value: $inputs.environmentName
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.Environments[0].Status == "Ready"
+      type: jsonpath
+    outputs:
+      environmentId: $response.body#/Environments/0/EnvironmentId
+  - stepId: applyOptions
+    description: >-
+      Apply the supplied configuration option settings to the running
+      environment.
+    operationId: updateEnvironment
+    parameters:
+    - name: Action
+      in: query
+      value: UpdateEnvironment
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        EnvironmentName: $inputs.environmentName
+        OptionSettings: $inputs.optionSettings
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      environmentId: $response.body#/EnvironmentId
+      status: $response.body#/Status
+  - stepId: pollReconfiguration
+    description: >-
+      Describe the environment and branch on its status — loop back while it is
+      still Updating, end when it returns to Ready, and fail on a terminal
+      Terminated status.
+    operationId: describeEnvironments
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeEnvironments
+    - name: Version
+      in: query
+      value: '2010-12-01'
+    - name: EnvironmentNames.member.1
+      in: query
+      value: $inputs.environmentName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/Environments/0/Status
+      health: $response.body#/Environments/0/Health
+    onSuccess:
+    - name: reconfigurationComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Ready"
+        type: jsonpath
+    - name: reconfigurationFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Terminated"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollReconfiguration
+      criteria:
+      - context: $response.body
+        condition: $.Environments[0].Status == "Updating"
+        type: jsonpath
+  outputs:
+    environmentId: $steps.applyOptions.outputs.environmentId
+    environmentStatus: $steps.pollReconfiguration.outputs.status
+    environmentHealth: $steps.pollReconfiguration.outputs.health
