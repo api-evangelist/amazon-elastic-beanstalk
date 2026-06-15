@@ -1,0 +1,306 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk API",
+    "version": "2010-12-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Describe Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://elasticbeanstalk.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ApplicationNames.member.1",
+                "value": "",
+                "type": "query",
+                "description": "The name of an application to describe."
+              }
+            ]
+          },
+          "docs": "Returns the descriptions of existing applications."
+        },
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Create Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticbeanstalk.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "ApplicationName",
+                  "value": ""
+                },
+                {
+                  "name": "Description",
+                  "value": ""
+                },
+                {
+                  "name": "ResourceLifecycleConfig",
+                  "value": ""
+                },
+                {
+                  "name": "Tags",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates an application that has one configuration template named default and no application versions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "#CreateEnvironment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Create Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticbeanstalk.amazonaws.com/#CreateEnvironment",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "ApplicationName",
+                  "value": ""
+                },
+                {
+                  "name": "EnvironmentName",
+                  "value": ""
+                },
+                {
+                  "name": "Description",
+                  "value": ""
+                },
+                {
+                  "name": "CNAMEPrefix",
+                  "value": ""
+                },
+                {
+                  "name": "Tier",
+                  "value": ""
+                },
+                {
+                  "name": "SolutionStackName",
+                  "value": ""
+                },
+                {
+                  "name": "PlatformArn",
+                  "value": ""
+                },
+                {
+                  "name": "VersionLabel",
+                  "value": ""
+                },
+                {
+                  "name": "TemplateName",
+                  "value": ""
+                },
+                {
+                  "name": "OptionSettings",
+                  "value": ""
+                },
+                {
+                  "name": "Tags",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Launches an AWS Elastic Beanstalk environment for the specified application using the specified configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "#DescribeEnvironments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Describe Environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://elasticbeanstalk.amazonaws.com/#DescribeEnvironments",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ApplicationName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the application associated with the environments."
+              },
+              {
+                "name": "EnvironmentIds.member.1",
+                "value": "",
+                "type": "query",
+                "description": "An environment ID to describe."
+              },
+              {
+                "name": "EnvironmentNames.member.1",
+                "value": "",
+                "type": "query",
+                "description": "An environment name to describe."
+              },
+              {
+                "name": "IncludeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to include deleted environments."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of environments to return."
+              },
+              {
+                "name": "NextToken",
+                "value": "",
+                "type": "query",
+                "description": "The pagination token for the next set of results."
+              }
+            ]
+          },
+          "docs": "Returns descriptions for existing environments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "#UpdateEnvironment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Update Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticbeanstalk.amazonaws.com/#UpdateEnvironment",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "EnvironmentId",
+                  "value": ""
+                },
+                {
+                  "name": "EnvironmentName",
+                  "value": ""
+                },
+                {
+                  "name": "Description",
+                  "value": ""
+                },
+                {
+                  "name": "VersionLabel",
+                  "value": ""
+                },
+                {
+                  "name": "TemplateName",
+                  "value": ""
+                },
+                {
+                  "name": "SolutionStackName",
+                  "value": ""
+                },
+                {
+                  "name": "PlatformArn",
+                  "value": ""
+                },
+                {
+                  "name": "OptionSettings",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Updates the environment description, deploys a new application version, updates the configuration settings, or updates the stack to a new version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

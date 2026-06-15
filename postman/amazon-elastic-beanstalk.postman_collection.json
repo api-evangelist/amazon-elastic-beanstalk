@@ -1,0 +1,1245 @@
+{
+  "info": {
+    "_postman_id": "cc7297d5-4816-420e-9ed2-fb31e4caa070",
+    "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk API",
+    "description": "AWS Elastic Beanstalk is a platform-as-a-service that makes it easy to deploy, manage, and scale web applications and services.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T16:51:05.000Z",
+    "updatedAt": "2026-06-05T16:51:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cc7297d5-4816-420e-9ed2-fb31e4caa070"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Amazon Elastic Beanstalk Create Application",
+          "id": "1a356cd6-4af2-4e70-94bf-fb12810360a3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The name of the application. Must be unique within your account.",
+                  "key": "ApplicationName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Your description of the application.",
+                  "key": "Description",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Specifies an application resource lifecycle configuration.",
+                  "key": "ServiceRole",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Specifies an application resource lifecycle configuration.",
+                  "key": "VersionLifecycleConfig",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "Specifies the tags applied to the application.",
+                  "key": "Tags",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "Specifies the tags applied to the application.",
+                  "key": "Tags",
+                  "value": "[object Object]"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=CreateApplication&Version=2010-12-01",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "CreateApplication"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2010-12-01"
+                }
+              ]
+            },
+            "description": "Creates an application that has one configuration template named default and no application versions."
+          },
+          "response": [
+            {
+              "id": "e215cc5e-2481-4f2a-9d99-00e0175d238b",
+              "name": "Successful response with the created application details.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The name of the application. Must be unique within your account.",
+                      "key": "ApplicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Your description of the application.",
+                      "key": "Description",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies an application resource lifecycle configuration.",
+                      "key": "ServiceRole",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies an application resource lifecycle configuration.",
+                      "key": "VersionLifecycleConfig",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Specifies the tags applied to the application.",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Specifies the tags applied to the application.",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=CreateApplication&Version=2010-12-01",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "CreateApplication"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Application>\n    <ApplicationArn>(string)</ApplicationArn>\n    <ApplicationName>(string)</ApplicationName>\n    <Description>(string)</Description>\n    <DateCreated>(string)</DateCreated>\n    <DateUpdated>(string)</DateUpdated>\n    <Versions>(string)</Versions>\n    <Versions>(string)</Versions>\n    <ConfigurationTemplates>(string)</ConfigurationTemplates>\n    <ConfigurationTemplates>(string)</ConfigurationTemplates>\n    <ResourceLifecycleConfig>\n      <ServiceRole>(string)</ServiceRole>\n      <VersionLifecycleConfig>\n      </VersionLifecycleConfig>\n    </ResourceLifecycleConfig>\n  </Application>\n</element>",
+              "createdAt": "2026-06-05T16:51:05.000Z",
+              "updatedAt": "2026-06-05T16:51:05.000Z",
+              "uid": "35240-e215cc5e-2481-4f2a-9d99-00e0175d238b"
+            },
+            {
+              "id": "215ffd2a-0be2-4a9d-9596-5d18be23f78d",
+              "name": "Bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The name of the application. Must be unique within your account.",
+                      "key": "ApplicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Your description of the application.",
+                      "key": "Description",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies an application resource lifecycle configuration.",
+                      "key": "ServiceRole",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies an application resource lifecycle configuration.",
+                      "key": "VersionLifecycleConfig",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Specifies the tags applied to the application.",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Specifies the tags applied to the application.",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=CreateApplication&Version=2010-12-01",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "CreateApplication"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T16:51:05.000Z",
+              "updatedAt": "2026-06-05T16:51:05.000Z",
+              "uid": "35240-215ffd2a-0be2-4a9d-9596-5d18be23f78d"
+            }
+          ],
+          "createdAt": "2026-06-05T16:51:05.000Z",
+          "updatedAt": "2026-06-05T16:51:05.000Z",
+          "uid": "35240-1a356cd6-4af2-4e70-94bf-fb12810360a3"
+        },
+        {
+          "name": "Amazon Elastic Beanstalk Describe Applications",
+          "id": "9d2ae6e5-341a-4b4b-a5e3-836176af913f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DescribeApplications&Version=2010-12-01&ApplicationNames.member.1=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "DescribeApplications"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2010-12-01"
+                },
+                {
+                  "description": "The name of an application to describe.",
+                  "key": "ApplicationNames.member.1",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns the descriptions of existing applications."
+          },
+          "response": [
+            {
+              "id": "911d6d8e-4884-4686-be68-2718f91ddd73",
+              "name": "Successful response with application details.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=DescribeApplications&Version=2010-12-01&ApplicationNames.member.1=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "DescribeApplications"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    },
+                    {
+                      "description": "The name of an application to describe.",
+                      "key": "ApplicationNames.member.1",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Applications>\n    <ApplicationArn>(string)</ApplicationArn>\n    <ApplicationName>(string)</ApplicationName>\n    <Description>(string)</Description>\n    <DateCreated>(string)</DateCreated>\n    <DateUpdated>(string)</DateUpdated>\n    <Versions>(string)</Versions>\n    <Versions>(string)</Versions>\n    <ConfigurationTemplates>(string)</ConfigurationTemplates>\n    <ConfigurationTemplates>(string)</ConfigurationTemplates>\n    <ResourceLifecycleConfig>\n      <ServiceRole>(string)</ServiceRole>\n      <VersionLifecycleConfig>\n      </VersionLifecycleConfig>\n    </ResourceLifecycleConfig>\n  </Applications>\n  <Applications>\n    <ApplicationArn>(string)</ApplicationArn>\n    <ApplicationName>(string)</ApplicationName>\n    <Description>(string)</Description>\n    <DateCreated>(string)</DateCreated>\n    <DateUpdated>(string)</DateUpdated>\n    <Versions>(string)</Versions>\n    <Versions>(string)</Versions>\n    <ConfigurationTemplates>(string)</ConfigurationTemplates>\n    <ConfigurationTemplates>(string)</ConfigurationTemplates>\n    <ResourceLifecycleConfig>\n      <ServiceRole>(string)</ServiceRole>\n      <VersionLifecycleConfig>\n      </VersionLifecycleConfig>\n    </ResourceLifecycleConfig>\n  </Applications>\n</element>",
+              "createdAt": "2026-06-05T16:51:05.000Z",
+              "updatedAt": "2026-06-05T16:51:05.000Z",
+              "uid": "35240-911d6d8e-4884-4686-be68-2718f91ddd73"
+            }
+          ],
+          "createdAt": "2026-06-05T16:51:05.000Z",
+          "updatedAt": "2026-06-05T16:51:05.000Z",
+          "uid": "35240-9d2ae6e5-341a-4b4b-a5e3-836176af913f"
+        }
+      ],
+      "id": "4781ab67-0bed-4b63-bc84-45b42145936b",
+      "createdAt": "2026-06-05T16:51:05.000Z",
+      "updatedAt": "2026-06-05T16:51:05.000Z",
+      "uid": "35240-4781ab67-0bed-4b63-bc84-45b42145936b"
+    },
+    {
+      "name": "#CreateEnvironment",
+      "item": [
+        {
+          "name": "Amazon Elastic Beanstalk Create Environment",
+          "id": "52642899-2cf1-4ed7-bd13-38f69bb590ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The name of the application that is associated with this environment.",
+                  "key": "ApplicationName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A unique name for the environment.",
+                  "key": "EnvironmentName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Your description for this environment.",
+                  "key": "Description",
+                  "value": "<string>"
+                },
+                {
+                  "description": "If specified, the environment attempts to use this value as the prefix for the CNAME.",
+                  "key": "CNAMEPrefix",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Specifies the tier to use in creating this environment.",
+                  "key": "Name",
+                  "value": "Worker"
+                },
+                {
+                  "description": "Specifies the tier to use in creating this environment.",
+                  "key": "Type",
+                  "value": "Standard"
+                },
+                {
+                  "description": "Specifies the tier to use in creating this environment.",
+                  "key": "Version",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of an Elastic Beanstalk solution stack to base the environment on.",
+                  "key": "SolutionStackName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The Amazon Resource Name (ARN) of the custom platform.",
+                  "key": "PlatformArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the application version to deploy.",
+                  "key": "VersionLabel",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the Elastic Beanstalk configuration template.",
+                  "key": "TemplateName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Option values for the Elastic Beanstalk configuration.",
+                  "key": "OptionSettings",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "Option values for the Elastic Beanstalk configuration.",
+                  "key": "OptionSettings",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "Specifies the tags applied to resources in the environment.",
+                  "key": "Tags",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "Specifies the tags applied to resources in the environment.",
+                  "key": "Tags",
+                  "value": "[object Object]"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=CreateEnvironment&Version=2010-12-01#CreateEnvironment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "CreateEnvironment"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2010-12-01"
+                }
+              ],
+              "hash": "CreateEnvironment"
+            },
+            "description": "Launches an AWS Elastic Beanstalk environment for the specified application using the specified configuration."
+          },
+          "response": [
+            {
+              "id": "5c78ef5d-65e3-4566-b31c-565fc4bbdef8",
+              "name": "Successful response with the created environment details.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The name of the application that is associated with this environment.",
+                      "key": "ApplicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A unique name for the environment.",
+                      "key": "EnvironmentName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Your description for this environment.",
+                      "key": "Description",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If specified, the environment attempts to use this value as the prefix for the CNAME.",
+                      "key": "CNAMEPrefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies the tier to use in creating this environment.",
+                      "key": "Name",
+                      "value": "Worker"
+                    },
+                    {
+                      "description": "Specifies the tier to use in creating this environment.",
+                      "key": "Type",
+                      "value": "Standard"
+                    },
+                    {
+                      "description": "Specifies the tier to use in creating this environment.",
+                      "key": "Version",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of an Elastic Beanstalk solution stack to base the environment on.",
+                      "key": "SolutionStackName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The Amazon Resource Name (ARN) of the custom platform.",
+                      "key": "PlatformArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the application version to deploy.",
+                      "key": "VersionLabel",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the Elastic Beanstalk configuration template.",
+                      "key": "TemplateName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Option values for the Elastic Beanstalk configuration.",
+                      "key": "OptionSettings",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Option values for the Elastic Beanstalk configuration.",
+                      "key": "OptionSettings",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Specifies the tags applied to resources in the environment.",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Specifies the tags applied to resources in the environment.",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=CreateEnvironment&Version=2010-12-01#CreateEnvironment",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "CreateEnvironment"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ],
+                  "hash": "CreateEnvironment"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <EnvironmentId>(string)</EnvironmentId>\n  <EnvironmentName>(string)</EnvironmentName>\n  <EnvironmentArn>(string)</EnvironmentArn>\n  <ApplicationName>(string)</ApplicationName>\n  <VersionLabel>(string)</VersionLabel>\n  <SolutionStackName>(string)</SolutionStackName>\n  <PlatformArn>(string)</PlatformArn>\n  <Description>(string)</Description>\n  <EndpointURL>(string)</EndpointURL>\n  <CNAME>(string)</CNAME>\n  <DateCreated>(string)</DateCreated>\n  <DateUpdated>(string)</DateUpdated>\n  <Status>(string)</Status>\n  <Health>(string)</Health>\n  <HealthStatus>(string)</HealthStatus>\n  <Tier>\n    <Name>(string)</Name>\n    <Type>(string)</Type>\n    <Version>(string)</Version>\n  </Tier>\n</element>",
+              "createdAt": "2026-06-05T16:51:05.000Z",
+              "updatedAt": "2026-06-05T16:51:05.000Z",
+              "uid": "35240-5c78ef5d-65e3-4566-b31c-565fc4bbdef8"
+            },
+            {
+              "id": "8c802535-1f55-4ba1-9933-61ed73e6ddba",
+              "name": "Bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The name of the application that is associated with this environment.",
+                      "key": "ApplicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A unique name for the environment.",
+                      "key": "EnvironmentName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Your description for this environment.",
+                      "key": "Description",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If specified, the environment attempts to use this value as the prefix for the CNAME.",
+                      "key": "CNAMEPrefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies the tier to use in creating this environment.",
+                      "key": "Name",
+                      "value": "Worker"
+                    },
+                    {
+                      "description": "Specifies the tier to use in creating this environment.",
+                      "key": "Type",
+                      "value": "Standard"
+                    },
+                    {
+                      "description": "Specifies the tier to use in creating this environment.",
+                      "key": "Version",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of an Elastic Beanstalk solution stack to base the environment on.",
+                      "key": "SolutionStackName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The Amazon Resource Name (ARN) of the custom platform.",
+                      "key": "PlatformArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the application version to deploy.",
+                      "key": "VersionLabel",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the Elastic Beanstalk configuration template.",
+                      "key": "TemplateName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Option values for the Elastic Beanstalk configuration.",
+                      "key": "OptionSettings",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Option values for the Elastic Beanstalk configuration.",
+                      "key": "OptionSettings",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Specifies the tags applied to resources in the environment.",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Specifies the tags applied to resources in the environment.",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=CreateEnvironment&Version=2010-12-01#CreateEnvironment",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "CreateEnvironment"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ],
+                  "hash": "CreateEnvironment"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T16:51:05.000Z",
+              "updatedAt": "2026-06-05T16:51:05.000Z",
+              "uid": "35240-8c802535-1f55-4ba1-9933-61ed73e6ddba"
+            }
+          ],
+          "createdAt": "2026-06-05T16:51:05.000Z",
+          "updatedAt": "2026-06-05T16:51:05.000Z",
+          "uid": "35240-52642899-2cf1-4ed7-bd13-38f69bb590ac"
+        }
+      ],
+      "id": "2dd98579-c4da-417b-a856-e8a84bbebf54",
+      "createdAt": "2026-06-05T16:51:05.000Z",
+      "updatedAt": "2026-06-05T16:51:05.000Z",
+      "uid": "35240-2dd98579-c4da-417b-a856-e8a84bbebf54"
+    },
+    {
+      "name": "#DescribeEnvironments",
+      "item": [
+        {
+          "name": "Amazon Elastic Beanstalk Describe Environments",
+          "id": "817c697c-93ea-4dd2-a67d-df37ed8ef0e3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DescribeEnvironments&Version=2010-12-01&ApplicationName=<string>&EnvironmentIds.member.1=<string>&EnvironmentNames.member.1=<string>&IncludeDeleted=<boolean>&MaxRecords=<integer>&NextToken=<string>#DescribeEnvironments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "DescribeEnvironments"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2010-12-01"
+                },
+                {
+                  "description": "The name of the application associated with the environments.",
+                  "key": "ApplicationName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "An environment ID to describe.",
+                  "key": "EnvironmentIds.member.1",
+                  "value": "<string>"
+                },
+                {
+                  "description": "An environment name to describe.",
+                  "key": "EnvironmentNames.member.1",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Indicates whether to include deleted environments.",
+                  "key": "IncludeDeleted",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "The maximum number of environments to return.",
+                  "key": "MaxRecords",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The pagination token for the next set of results.",
+                  "key": "NextToken",
+                  "value": "<string>"
+                }
+              ],
+              "hash": "DescribeEnvironments"
+            },
+            "description": "Returns descriptions for existing environments."
+          },
+          "response": [
+            {
+              "id": "19ad53af-7d1c-4473-aa3c-0ec0bd46a827",
+              "name": "Successful response with environment details.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=DescribeEnvironments&Version=2010-12-01&ApplicationName=<string>&EnvironmentIds.member.1=<string>&EnvironmentNames.member.1=<string>&IncludeDeleted=<boolean>&MaxRecords=<integer>&NextToken=<string>#DescribeEnvironments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "DescribeEnvironments"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    },
+                    {
+                      "description": "The name of the application associated with the environments.",
+                      "key": "ApplicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An environment ID to describe.",
+                      "key": "EnvironmentIds.member.1",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An environment name to describe.",
+                      "key": "EnvironmentNames.member.1",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Indicates whether to include deleted environments.",
+                      "key": "IncludeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The maximum number of environments to return.",
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The pagination token for the next set of results.",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "hash": "DescribeEnvironments"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Environments>\n    <EnvironmentId>(string)</EnvironmentId>\n    <EnvironmentName>(string)</EnvironmentName>\n    <EnvironmentArn>(string)</EnvironmentArn>\n    <ApplicationName>(string)</ApplicationName>\n    <VersionLabel>(string)</VersionLabel>\n    <SolutionStackName>(string)</SolutionStackName>\n    <PlatformArn>(string)</PlatformArn>\n    <Description>(string)</Description>\n    <EndpointURL>(string)</EndpointURL>\n    <CNAME>(string)</CNAME>\n    <DateCreated>(string)</DateCreated>\n    <DateUpdated>(string)</DateUpdated>\n    <Status>(string)</Status>\n    <Health>(string)</Health>\n    <HealthStatus>(string)</HealthStatus>\n    <Tier>\n      <Name>(string)</Name>\n      <Type>(string)</Type>\n      <Version>(string)</Version>\n    </Tier>\n  </Environments>\n  <Environments>\n    <EnvironmentId>(string)</EnvironmentId>\n    <EnvironmentName>(string)</EnvironmentName>\n    <EnvironmentArn>(string)</EnvironmentArn>\n    <ApplicationName>(string)</ApplicationName>\n    <VersionLabel>(string)</VersionLabel>\n    <SolutionStackName>(string)</SolutionStackName>\n    <PlatformArn>(string)</PlatformArn>\n    <Description>(string)</Description>\n    <EndpointURL>(string)</EndpointURL>\n    <CNAME>(string)</CNAME>\n    <DateCreated>(string)</DateCreated>\n    <DateUpdated>(string)</DateUpdated>\n    <Status>(string)</Status>\n    <Health>(string)</Health>\n    <HealthStatus>(string)</HealthStatus>\n    <Tier>\n      <Name>(string)</Name>\n      <Type>(string)</Type>\n      <Version>(string)</Version>\n    </Tier>\n  </Environments>\n  <NextToken>(string)</NextToken>\n</element>",
+              "createdAt": "2026-06-05T16:51:05.000Z",
+              "updatedAt": "2026-06-05T16:51:05.000Z",
+              "uid": "35240-19ad53af-7d1c-4473-aa3c-0ec0bd46a827"
+            }
+          ],
+          "createdAt": "2026-06-05T16:51:05.000Z",
+          "updatedAt": "2026-06-05T16:51:05.000Z",
+          "uid": "35240-817c697c-93ea-4dd2-a67d-df37ed8ef0e3"
+        }
+      ],
+      "id": "7d31d45b-9d52-46e6-80d4-e5e6781b33f6",
+      "createdAt": "2026-06-05T16:51:05.000Z",
+      "updatedAt": "2026-06-05T16:51:05.000Z",
+      "uid": "35240-7d31d45b-9d52-46e6-80d4-e5e6781b33f6"
+    },
+    {
+      "name": "#UpdateEnvironment",
+      "item": [
+        {
+          "name": "Amazon Elastic Beanstalk Update Environment",
+          "id": "49c83932-e5b7-4313-8a03-bf4ade380a6c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "The ID of the environment to update.",
+                  "key": "EnvironmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the environment to update.",
+                  "key": "EnvironmentName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A new description for the environment.",
+                  "key": "Description",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The application version to deploy to the running environment.",
+                  "key": "VersionLabel",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the configuration template to deploy.",
+                  "key": "TemplateName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the solution stack to update to.",
+                  "key": "SolutionStackName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The ARN of the platform to update to.",
+                  "key": "PlatformArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Updated configuration option values.",
+                  "key": "OptionSettings",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "Updated configuration option values.",
+                  "key": "OptionSettings",
+                  "value": "[object Object]"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=UpdateEnvironment&Version=2010-12-01#UpdateEnvironment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "UpdateEnvironment"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2010-12-01"
+                }
+              ],
+              "hash": "UpdateEnvironment"
+            },
+            "description": "Updates the environment description, deploys a new application version, updates the configuration settings, or updates the stack to a new version."
+          },
+          "response": [
+            {
+              "id": "bab9562a-d995-4d5e-bf04-53402a74fae5",
+              "name": "Successful response with the updated environment details.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "The ID of the environment to update.",
+                      "key": "EnvironmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the environment to update.",
+                      "key": "EnvironmentName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A new description for the environment.",
+                      "key": "Description",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The application version to deploy to the running environment.",
+                      "key": "VersionLabel",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the configuration template to deploy.",
+                      "key": "TemplateName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the solution stack to update to.",
+                      "key": "SolutionStackName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the platform to update to.",
+                      "key": "PlatformArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Updated configuration option values.",
+                      "key": "OptionSettings",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Updated configuration option values.",
+                      "key": "OptionSettings",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=UpdateEnvironment&Version=2010-12-01#UpdateEnvironment",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "UpdateEnvironment"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ],
+                  "hash": "UpdateEnvironment"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <EnvironmentId>(string)</EnvironmentId>\n  <EnvironmentName>(string)</EnvironmentName>\n  <EnvironmentArn>(string)</EnvironmentArn>\n  <ApplicationName>(string)</ApplicationName>\n  <VersionLabel>(string)</VersionLabel>\n  <SolutionStackName>(string)</SolutionStackName>\n  <PlatformArn>(string)</PlatformArn>\n  <Description>(string)</Description>\n  <EndpointURL>(string)</EndpointURL>\n  <CNAME>(string)</CNAME>\n  <DateCreated>(string)</DateCreated>\n  <DateUpdated>(string)</DateUpdated>\n  <Status>(string)</Status>\n  <Health>(string)</Health>\n  <HealthStatus>(string)</HealthStatus>\n  <Tier>\n    <Name>(string)</Name>\n    <Type>(string)</Type>\n    <Version>(string)</Version>\n  </Tier>\n</element>",
+              "createdAt": "2026-06-05T16:51:05.000Z",
+              "updatedAt": "2026-06-05T16:51:05.000Z",
+              "uid": "35240-bab9562a-d995-4d5e-bf04-53402a74fae5"
+            },
+            {
+              "id": "189777ad-c04e-49f5-9f67-21daac60c4c3",
+              "name": "Bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "The ID of the environment to update.",
+                      "key": "EnvironmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the environment to update.",
+                      "key": "EnvironmentName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A new description for the environment.",
+                      "key": "Description",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The application version to deploy to the running environment.",
+                      "key": "VersionLabel",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the configuration template to deploy.",
+                      "key": "TemplateName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the solution stack to update to.",
+                      "key": "SolutionStackName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the platform to update to.",
+                      "key": "PlatformArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Updated configuration option values.",
+                      "key": "OptionSettings",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Updated configuration option values.",
+                      "key": "OptionSettings",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=UpdateEnvironment&Version=2010-12-01#UpdateEnvironment",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "UpdateEnvironment"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ],
+                  "hash": "UpdateEnvironment"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T16:51:05.000Z",
+              "updatedAt": "2026-06-05T16:51:05.000Z",
+              "uid": "35240-189777ad-c04e-49f5-9f67-21daac60c4c3"
+            }
+          ],
+          "createdAt": "2026-06-05T16:51:05.000Z",
+          "updatedAt": "2026-06-05T16:51:05.000Z",
+          "uid": "35240-49c83932-e5b7-4313-8a03-bf4ade380a6c"
+        }
+      ],
+      "id": "90eb06f8-de54-46a5-913e-413cc02654fb",
+      "createdAt": "2026-06-05T16:51:05.000Z",
+      "updatedAt": "2026-06-05T16:51:05.000Z",
+      "uid": "35240-90eb06f8-de54-46a5-913e-413cc02654fb"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://elasticbeanstalk.amazonaws.com"
+    }
+  ]
+}
