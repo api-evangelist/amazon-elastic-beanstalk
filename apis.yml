@@ -53,27 +53,24 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-elastic-beanstalk/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/amazon-elastic-beanstalk-add-environment-to-application-workflow.yml
-        name: Amazon Elastic Beanstalk Add Environment To Application
-        summary: Confirm an existing application, launch an additional environment for it, and poll until Ready.
-      - url: arazzo/amazon-elastic-beanstalk-audit-application-environments-workflow.yml
-        name: Amazon Elastic Beanstalk Audit Application Environments
-        summary: Resolve an application and inventory all of its environments with their status and health.
-      - url: arazzo/amazon-elastic-beanstalk-deploy-version-to-environment-workflow.yml
-        name: Amazon Elastic Beanstalk Deploy Version To Environment
-        summary: Deploy an application version to a running environment and poll until the update completes.
-      - url: arazzo/amazon-elastic-beanstalk-deploy-version-with-rollback-workflow.yml
-        name: Amazon Elastic Beanstalk Deploy Version With Rollback
-        summary: Deploy a new version, poll the rollout, and roll back to the previous version if it fails.
-      - url: arazzo/amazon-elastic-beanstalk-provision-application-environment-workflow.yml
-        name: Amazon Elastic Beanstalk Provision Application And Environment
-        summary: Create an application, launch an environment for it, and poll until the environment is Ready.
-      - url: arazzo/amazon-elastic-beanstalk-update-environment-configuration-workflow.yml
-        name: Amazon Elastic Beanstalk Update Environment Configuration
-        summary: Apply configuration option settings to a running environment and poll until the change settles.
+  - type: Arazzo
+    url: arazzo/amazon-elastic-beanstalk-add-environment-to-application-workflow.yml
+    name: Amazon Elastic Beanstalk Add Environment To Application
+  - type: Arazzo
+    url: arazzo/amazon-elastic-beanstalk-audit-application-environments-workflow.yml
+    name: Amazon Elastic Beanstalk Audit Application Environments
+  - type: Arazzo
+    url: arazzo/amazon-elastic-beanstalk-deploy-version-to-environment-workflow.yml
+    name: Amazon Elastic Beanstalk Deploy Version To Environment
+  - type: Arazzo
+    url: arazzo/amazon-elastic-beanstalk-deploy-version-with-rollback-workflow.yml
+    name: Amazon Elastic Beanstalk Deploy Version With Rollback
+  - type: Arazzo
+    url: arazzo/amazon-elastic-beanstalk-provision-application-environment-workflow.yml
+    name: Amazon Elastic Beanstalk Provision Application And Environment
+  - type: Arazzo
+    url: arazzo/amazon-elastic-beanstalk-update-environment-configuration-workflow.yml
+    name: Amazon Elastic Beanstalk Update Environment Configuration
   - type: Portal
     url: https://aws.amazon.com/
   - type: DeveloperPortal
@@ -86,7 +83,7 @@ common:
     url: https://github.com/aws
   - type: Console
     url: https://console.aws.amazon.com/elasticbeanstalk/
-  - type: SignUp
+  - type: Signup
     url: https://portal.aws.amazon.com/billing/signup
   - type: Login
     url: https://signin.aws.amazon.com/
