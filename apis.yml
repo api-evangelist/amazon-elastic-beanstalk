@@ -51,6 +51,14 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-elastic-beanstalk-context.jsonld
 common:
+  - type: TrustCenter
+    url: security/amazon-elastic-beanstalk-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-elastic-beanstalk-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-elastic-beanstalk-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-elastic-beanstalk-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-elastic-beanstalk/overview
   - type: Arazzo
