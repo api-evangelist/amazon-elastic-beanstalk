@@ -1,0 +1,235 @@
+openapi: 3.1.0
+info:
+  title: 'Amazon Elastic Beanstalk AWS Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API #CreateEnvironment API'
+  description: AWS Elastic Beanstalk is a platform-as-a-service that makes it easy to deploy, manage, and scale web applications and services.
+  version: '2010-12-01'
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+    url: https://aws.amazon.com/elasticbeanstalk/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://elasticbeanstalk.amazonaws.com
+  description: AWS Elastic Beanstalk API endpoint
+tags:
+- name: '#CreateEnvironment'
+paths:
+  /#CreateEnvironment:
+    post:
+      operationId: createEnvironment
+      summary: Amazon Elastic Beanstalk Create Environment
+      description: Launches an AWS Elastic Beanstalk environment for the specified application using the specified configuration.
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateEnvironment
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2010-12-01'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - ApplicationName
+              properties:
+                ApplicationName:
+                  type: string
+                  description: The name of the application that is associated with this environment.
+                EnvironmentName:
+                  type: string
+                  description: A unique name for the environment.
+                Description:
+                  type: string
+                  description: Your description for this environment.
+                CNAMEPrefix:
+                  type: string
+                  description: If specified, the environment attempts to use this value as the prefix for the CNAME.
+                Tier:
+                  type: object
+                  properties:
+                    Name:
+                      type: string
+                      enum:
+                      - WebServer
+                      - Worker
+                    Type:
+                      type: string
+                      enum:
+                      - Standard
+                      - SQS/HTTP
+                    Version:
+                      type: string
+                  description: Specifies the tier to use in creating this environment.
+                SolutionStackName:
+                  type: string
+                  description: The name of an Elastic Beanstalk solution stack to base the environment on.
+                PlatformArn:
+                  type: string
+                  description: The Amazon Resource Name (ARN) of the custom platform.
+                VersionLabel:
+                  type: string
+                  description: The name of the application version to deploy.
+                TemplateName:
+                  type: string
+                  description: The name of the Elastic Beanstalk configuration template.
+                OptionSettings:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      ResourceName:
+                        type: string
+                      Namespace:
+                        type: string
+                      OptionName:
+                        type: string
+                      Value:
+                        type: string
+                  description: Option values for the Elastic Beanstalk configuration.
+                Tags:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Key:
+                        type: string
+                      Value:
+                        type: string
+                  description: Specifies the tags applied to resources in the environment.
+            examples:
+              createEnvironmentRequestExample:
+                summary: Default createEnvironment request
+                x-microcks-default: true
+                value:
+                  ApplicationName: example-name
+                  EnvironmentName: example-name
+                  Description: Example description
+                  CNAMEPrefix: example-name
+                  Tier: {}
+      responses:
+        '200':
+          description: Successful response with the created environment details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Environment'
+              examples:
+                createEnvironment200Example:
+                  summary: Default createEnvironment 200 response
+                  x-microcks-default: true
+                  value:
+                    EnvironmentId: example-id-12345
+                    EnvironmentName: example-name
+                    EnvironmentArn: arn:aws:service:us-east-1:123456789012:resource/example
+                    ApplicationName: example-name
+                    VersionLabel: '2025-01-01'
+        '400':
+          description: Bad request error.
+      tags:
+      - '#CreateEnvironment'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Environment:
+      type: object
+      properties:
+        EnvironmentId:
+          type: string
+          description: The ID of this environment.
+        EnvironmentName:
+          type: string
+          description: The name of this environment.
+        EnvironmentArn:
+          type: string
+          description: The ARN of this environment.
+        ApplicationName:
+          type: string
+          description: The name of the application associated with this environment.
+        VersionLabel:
+          type: string
+          description: The application version deployed in this environment.
+        SolutionStackName:
+          type: string
+          description: The name of the solution stack deployed with this environment.
+        PlatformArn:
+          type: string
+          description: The ARN of the platform version.
+        Description:
+          type: string
+          description: Describes this environment.
+        EndpointURL:
+          type: string
+          description: The URL to the LoadBalancer for this environment.
+        CNAME:
+          type: string
+          description: The URL to the CNAME for this environment.
+        DateCreated:
+          type: string
+          format: date-time
+          description: The creation date for this environment.
+        DateUpdated:
+          type: string
+          format: date-time
+          description: The last modified date for this environment.
+        Status:
+          type: string
+          enum:
+          - Aborting
+          - Launching
+          - Updating
+          - LinkingFrom
+          - LinkingTo
+          - Ready
+          - Terminating
+          - Terminated
+          description: The current operational status of the environment.
+        Health:
+          type: string
+          enum:
+          - Green
+          - Yellow
+          - Red
+          - Grey
+          description: Describes the health status of the environment.
+        HealthStatus:
+          type: string
+          enum:
+          - NoData
+          - Unknown
+          - Pending
+          - Ok
+          - Info
+          - Warning
+          - Degraded
+          - Severe
+          - Suspended
+          description: Returns the health status of the application running in your environment.
+        Tier:
+          type: object
+          properties:
+            Name:
+              type: string
+            Type:
+              type: string
+            Version:
+              type: string
+          description: Describes the current tier of this environment.
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication.
