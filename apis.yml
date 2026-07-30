@@ -3,6 +3,19 @@ description: >-
   AWS Elastic Beanstalk is a platform-as-a-service (PaaS) that makes it easy to deploy, manage, and scale web
   applications and services. You simply upload your code and Elastic Beanstalk automatically handles the deployment,
   capacity provisioning, load balancing, auto-scaling, and application health monitoring.
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 url: https://aws.amazon.com/elasticbeanstalk/
 created: '2024-01-15'
@@ -18,38 +31,125 @@ tags:
   - Platform As A Service
   - Web Applications
 apis:
-  - name: AWS Elastic Beanstalk API
-    description: >-
-      API for managing AWS Elastic Beanstalk applications, environments, and related resources including configuration
-      templates and application versions.
-    humanURL: https://aws.amazon.com/elasticbeanstalk/
-    baseURL: https://elasticbeanstalk.amazonaws.com
-    tags:
-      - Auto Scaling
-      - Deployment
-      - PaaS
-      - Web Applications
-    properties:
-      - type: Documentation
-        url: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/
-      - type: OpenAPI
-        url: openapi/amazon-elastic-beanstalk-openapi.yml
-      - type: APIReference
-        url: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/
-      - type: GettingStarted
-        url: https://aws.amazon.com/elasticbeanstalk/getting-started/
-      - type: Pricing
-        url: https://aws.amazon.com/elasticbeanstalk/pricing/
-      - type: FAQ
-        url: https://aws.amazon.com/elasticbeanstalk/faqs/
-      - type: JSONSchema
-        url: json-schema/amazon-elastic-beanstalk-application-description-message-schema.json
-      - type: JSONSchema
-        url: json-schema/amazon-elastic-beanstalk-application-description-schema.json
-      - type: JSONSchema
-        url: json-schema/amazon-elastic-beanstalk-application-descriptions-message-schema.json
-      - type: JSONLD
-        url: json-ld/amazon-elastic-beanstalk-context.jsonld
+- aid: >-
+    amazon-elastic-beanstalk:amazon-elastic-beanstalk-amazon-elastic-beanstalk-aws-elastic-beanstalk-api-api
+  name: Amazon Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API API
+  description: >-
+    The Amazon Elastic Beanstalk AWS Elastic Beanstalk API API from Amazon Elastic Beanstalk — 1 operation(s)
+    for amazon elastic beanstalk aws elastic beanstalk api.
+  humanURL: https://aws.amazon.com/elasticbeanstalk/
+  baseURL: https://elasticbeanstalk.amazonaws.com
+  tags:
+  - Amazon Elastic Beanstalk AWS Elastic Beanstalk API
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/amazon-elastic-beanstalk-amazon-elastic-beanstalk-aws-elastic-beanstalk-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/
+  - type: GettingStarted
+    url: https://aws.amazon.com/elasticbeanstalk/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/elasticbeanstalk/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/elasticbeanstalk/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-description-message-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-description-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-descriptions-message-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-elastic-beanstalk-context.jsonld
+- aid: amazon-elastic-beanstalk:amazon-elastic-beanstalk-createenvironment-api
+  name: 'Amazon Elastic Beanstalk #CreateEnvironment API'
+  description: >-
+    The #CreateEnvironment API from Amazon Elastic Beanstalk — 1 operation(s) for #createenvironment.
+  humanURL: https://aws.amazon.com/elasticbeanstalk/
+  baseURL: https://elasticbeanstalk.amazonaws.com
+  tags:
+  - '#CreateEnvironment'
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-elastic-beanstalk-createenvironment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/
+  - type: GettingStarted
+    url: https://aws.amazon.com/elasticbeanstalk/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/elasticbeanstalk/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/elasticbeanstalk/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-description-message-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-description-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-descriptions-message-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-elastic-beanstalk-context.jsonld
+- aid: amazon-elastic-beanstalk:amazon-elastic-beanstalk-describeenvironments-api
+  name: 'Amazon Elastic Beanstalk #DescribeEnvironments API'
+  description: >-
+    The #DescribeEnvironments API from Amazon Elastic Beanstalk — 1 operation(s) for #describeenvironments.
+  humanURL: https://aws.amazon.com/elasticbeanstalk/
+  baseURL: https://elasticbeanstalk.amazonaws.com
+  tags:
+  - '#DescribeEnvironments'
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-elastic-beanstalk-describeenvironments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/
+  - type: GettingStarted
+    url: https://aws.amazon.com/elasticbeanstalk/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/elasticbeanstalk/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/elasticbeanstalk/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-description-message-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-description-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-descriptions-message-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-elastic-beanstalk-context.jsonld
+- aid: amazon-elastic-beanstalk:amazon-elastic-beanstalk-updateenvironment-api
+  name: 'Amazon Elastic Beanstalk #UpdateEnvironment API'
+  description: >-
+    The #UpdateEnvironment API from Amazon Elastic Beanstalk — 1 operation(s) for #updateenvironment.
+  humanURL: https://aws.amazon.com/elasticbeanstalk/
+  baseURL: https://elasticbeanstalk.amazonaws.com
+  tags:
+  - '#UpdateEnvironment'
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-elastic-beanstalk-updateenvironment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/
+  - type: GettingStarted
+    url: https://aws.amazon.com/elasticbeanstalk/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/elasticbeanstalk/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/elasticbeanstalk/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-description-message-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-description-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elastic-beanstalk-application-descriptions-message-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-elastic-beanstalk-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/amazon-elastic-beanstalk-agentic-access.yml
