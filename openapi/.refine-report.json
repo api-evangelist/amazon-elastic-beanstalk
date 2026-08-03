@@ -1,0 +1,20 @@
+{
+  "provider": "amazon-elastic-beanstalk",
+  "sources": [
+    "amazon-elastic-beanstalk-amazon-elastic-beanstalk-aws-elastic-beanstalk-api-api-openapi.yml",
+    "amazon-elastic-beanstalk-createenvironment-api-openapi.yml",
+    "amazon-elastic-beanstalk-describeenvironments-api-openapi.yml",
+    "amazon-elastic-beanstalk-updateenvironment-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-elastic-beanstalk-amazon-elastic-beanstalk-aws-elastic-beanstalk-api-api-openapi.yml",
+    "amazon-elastic-beanstalk-createenvironment-api-openapi.yml",
+    "amazon-elastic-beanstalk-describeenvironments-api-openapi.yml",
+    "amazon-elastic-beanstalk-updateenvironment-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
