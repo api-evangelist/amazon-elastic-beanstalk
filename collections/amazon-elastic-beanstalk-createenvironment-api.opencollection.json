@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API #CreateEnvironment API",
+    "version": "2010-12-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "#CreateEnvironment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Create Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticbeanstalk.amazonaws.com/#CreateEnvironment",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "ApplicationName",
+                  "value": ""
+                },
+                {
+                  "name": "EnvironmentName",
+                  "value": ""
+                },
+                {
+                  "name": "Description",
+                  "value": ""
+                },
+                {
+                  "name": "CNAMEPrefix",
+                  "value": ""
+                },
+                {
+                  "name": "Tier",
+                  "value": ""
+                },
+                {
+                  "name": "SolutionStackName",
+                  "value": ""
+                },
+                {
+                  "name": "PlatformArn",
+                  "value": ""
+                },
+                {
+                  "name": "VersionLabel",
+                  "value": ""
+                },
+                {
+                  "name": "TemplateName",
+                  "value": ""
+                },
+                {
+                  "name": "OptionSettings",
+                  "value": ""
+                },
+                {
+                  "name": "Tags",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Launches an AWS Elastic Beanstalk environment for the specified application using the specified configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

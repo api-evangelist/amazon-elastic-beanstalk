@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API #DescribeEnvironments API",
+    "version": "2010-12-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "#DescribeEnvironments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Describe Environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://elasticbeanstalk.amazonaws.com/#DescribeEnvironments",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ApplicationName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the application associated with the environments."
+              },
+              {
+                "name": "EnvironmentIds.member.1",
+                "value": "",
+                "type": "query",
+                "description": "An environment ID to describe."
+              },
+              {
+                "name": "EnvironmentNames.member.1",
+                "value": "",
+                "type": "query",
+                "description": "An environment name to describe."
+              },
+              {
+                "name": "IncludeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to include deleted environments."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of environments to return."
+              },
+              {
+                "name": "NextToken",
+                "value": "",
+                "type": "query",
+                "description": "The pagination token for the next set of results."
+              }
+            ]
+          },
+          "docs": "Returns descriptions for existing environments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

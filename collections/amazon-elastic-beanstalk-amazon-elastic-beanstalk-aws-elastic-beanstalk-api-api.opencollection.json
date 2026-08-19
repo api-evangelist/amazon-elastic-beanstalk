@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API API",
+    "version": "2010-12-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Describe Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://elasticbeanstalk.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ApplicationNames.member.1",
+                "value": "",
+                "type": "query",
+                "description": "The name of an application to describe."
+              }
+            ]
+          },
+          "docs": "Returns the descriptions of existing applications."
+        },
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Create Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticbeanstalk.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "ApplicationName",
+                  "value": ""
+                },
+                {
+                  "name": "Description",
+                  "value": ""
+                },
+                {
+                  "name": "ResourceLifecycleConfig",
+                  "value": ""
+                },
+                {
+                  "name": "Tags",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates an application that has one configuration template named default and no application versions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,326 @@
+{
+  "item": [
+    {
+      "id": "c1dab2b6-e9b3-4f30-9bf3-304bc01dff3a",
+      "name": "#UpdateEnvironment",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10599843-1ea8-4c2e-838a-260dfcdb52cc",
+          "name": "Amazon Elastic Beanstalk Update Environment",
+          "request": {
+            "name": "Amazon Elastic Beanstalk Update Environment",
+            "description": {
+              "content": "Updates the environment description, deploys a new application version, updates the configuration settings, or updates the stack to a new version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "hash": "UpdateEnvironment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2010-12-01",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "EnvironmentId",
+                  "value": "<string>",
+                  "description": "The ID of the environment to update."
+                },
+                {
+                  "disabled": false,
+                  "key": "EnvironmentName",
+                  "value": "<string>",
+                  "description": "The name of the environment to update."
+                },
+                {
+                  "disabled": false,
+                  "key": "Description",
+                  "value": "<string>",
+                  "description": "A new description for the environment."
+                },
+                {
+                  "disabled": false,
+                  "key": "VersionLabel",
+                  "value": "<string>",
+                  "description": "The application version to deploy to the running environment."
+                },
+                {
+                  "disabled": false,
+                  "key": "TemplateName",
+                  "value": "<string>",
+                  "description": "The name of the configuration template to deploy."
+                },
+                {
+                  "disabled": false,
+                  "key": "SolutionStackName",
+                  "value": "<string>",
+                  "description": "The name of the solution stack to update to."
+                },
+                {
+                  "disabled": false,
+                  "key": "PlatformArn",
+                  "value": "<string>",
+                  "description": "The ARN of the platform to update to."
+                },
+                {
+                  "disabled": false,
+                  "key": "OptionSettings",
+                  "value": "{\"ResourceName\":\"<string>\",\"Namespace\":\"<string>\",\"OptionName\":\"<string>\",\"Value\":\"<string>\"}",
+                  "description": "Updated configuration option values."
+                },
+                {
+                  "disabled": false,
+                  "key": "OptionSettings",
+                  "value": "{\"ResourceName\":\"<string>\",\"Namespace\":\"<string>\",\"OptionName\":\"<string>\",\"Value\":\"<string>\"}",
+                  "description": "Updated configuration option values."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d1fdfd67-334c-45ff-9034-c64cdd700e05",
+              "name": "Successful response with the updated environment details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "hash": "UpdateEnvironment",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The ID of the environment to update.",
+                        "type": "text/plain"
+                      },
+                      "key": "EnvironmentId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of the environment to update.",
+                        "type": "text/plain"
+                      },
+                      "key": "EnvironmentName",
+                      "value": "example-name"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A new description for the environment.",
+                        "type": "text/plain"
+                      },
+                      "key": "Description",
+                      "value": "Example description"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The application version to deploy to the running environment.",
+                        "type": "text/plain"
+                      },
+                      "key": "VersionLabel",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of the configuration template to deploy.",
+                        "type": "text/plain"
+                      },
+                      "key": "TemplateName",
+                      "value": "example-name"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "816f9b91-0251-4ca1-a5dc-cd9db14bbc11",
+              "name": "Bad request error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "hash": "UpdateEnvironment",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The ID of the environment to update.",
+                        "type": "text/plain"
+                      },
+                      "key": "EnvironmentId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of the environment to update.",
+                        "type": "text/plain"
+                      },
+                      "key": "EnvironmentName",
+                      "value": "example-name"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A new description for the environment.",
+                        "type": "text/plain"
+                      },
+                      "key": "Description",
+                      "value": "Example description"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The application version to deploy to the running environment.",
+                        "type": "text/plain"
+                      },
+                      "key": "VersionLabel",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of the configuration template to deploy.",
+                        "type": "text/plain"
+                      },
+                      "key": "TemplateName",
+                      "value": "example-name"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://elasticbeanstalk.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d7e5ccc8-5f78-4290-ae29-fd9823ad22c6",
+    "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API #UpdateEnvironment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Elastic Beanstalk is a platform-as-a-service that makes it easy to deploy, manage, and scale web applications and services.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

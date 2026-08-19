@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "c837e47e-1a5e-46ce-a6bd-58dc349e4c3f",
+      "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fabe3a47-3fdd-47bc-a562-ea53a27b4610",
+          "name": "Amazon Elastic Beanstalk Create Application",
+          "request": {
+            "name": "Amazon Elastic Beanstalk Create Application",
+            "description": {
+              "content": "Creates an application that has one configuration template named default and no application versions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2010-12-01",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "ApplicationName",
+                  "value": "<string>",
+                  "description": "(Required) The name of the application. Must be unique within your account."
+                },
+                {
+                  "disabled": false,
+                  "key": "Description",
+                  "value": "<string>",
+                  "description": "Your description of the application."
+                },
+                {
+                  "disabled": false,
+                  "key": "ServiceRole",
+                  "value": "<string>",
+                  "description": "Specifies an application resource lifecycle configuration."
+                },
+                {
+                  "disabled": false,
+                  "key": "VersionLifecycleConfig",
+                  "value": "{\"MaxCountRule\":{\"Enabled\":\"<boolean>\",\"MaxCount\":\"<integer>\",\"DeleteSourceFromS3\":\"<boolean>\"},\"MaxAgeRule\":{\"Enabled\":\"<boolean>\",\"MaxAgeInDays\":\"<integer>\",\"DeleteSourceFromS3\":\"<boolean>\"}}",
+                  "description": "Specifies an application resource lifecycle configuration."
+                },
+                {
+                  "disabled": false,
+                  "key": "Tags",
+                  "value": "{\"Key\":\"<string>\",\"Value\":\"<string>\"}",
+                  "description": "Specifies the tags applied to the application."
+                },
+                {
+                  "disabled": false,
+                  "key": "Tags",
+                  "value": "{\"Key\":\"<string>\",\"Value\":\"<string>\"}",
+                  "description": "Specifies the tags applied to the application."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "009a8179-d171-4c8c-aa95-bfd12f837aac",
+              "name": "Successful response with the created application details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The name of the application. Must be unique within your account.",
+                        "type": "text/plain"
+                      },
+                      "key": "ApplicationName",
+                      "value": "example-name"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Your description of the application.",
+                        "type": "text/plain"
+                      },
+                      "key": "Description",
+                      "value": "Example description"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "7a5e522d-fb4e-46c4-9a98-de05c96ce8da",
+              "name": "Bad request error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The name of the application. Must be unique within your account.",
+                        "type": "text/plain"
+                      },
+                      "key": "ApplicationName",
+                      "value": "example-name"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Your description of the application.",
+                        "type": "text/plain"
+                      },
+                      "key": "Description",
+                      "value": "Example description"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49801d60-3edd-467c-bfe8-217d6cec046a",
+          "name": "Amazon Elastic Beanstalk Describe Applications",
+          "request": {
+            "name": "Amazon Elastic Beanstalk Describe Applications",
+            "description": {
+              "content": "Returns the descriptions of existing applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2010-12-01",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ApplicationNames.member.1",
+                  "value": "<string>",
+                  "description": "The name of an application to describe."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf97ada0-ad47-4cb4-b25a-6a799e32e927",
+              "name": "Successful response with application details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    },
+                    {
+                      "key": "ApplicationNames.member.1",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://elasticbeanstalk.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "045ebdd3-4fa3-49f3-864a-54518dd8fdbd",
+    "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Elastic Beanstalk is a platform-as-a-service that makes it easy to deploy, manage, and scale web applications and services.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

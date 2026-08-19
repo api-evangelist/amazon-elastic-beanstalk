@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API #UpdateEnvironment API",
+    "version": "2010-12-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "#UpdateEnvironment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Elastic Beanstalk Update Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticbeanstalk.amazonaws.com/#UpdateEnvironment",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "EnvironmentId",
+                  "value": ""
+                },
+                {
+                  "name": "EnvironmentName",
+                  "value": ""
+                },
+                {
+                  "name": "Description",
+                  "value": ""
+                },
+                {
+                  "name": "VersionLabel",
+                  "value": ""
+                },
+                {
+                  "name": "TemplateName",
+                  "value": ""
+                },
+                {
+                  "name": "SolutionStackName",
+                  "value": ""
+                },
+                {
+                  "name": "PlatformArn",
+                  "value": ""
+                },
+                {
+                  "name": "OptionSettings",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Updates the environment description, deploys a new application version, updates the configuration settings, or updates the stack to a new version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

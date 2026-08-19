@@ -1,0 +1,186 @@
+{
+  "item": [
+    {
+      "id": "a0581df0-fe11-4307-8aa2-d3eb8999fd2b",
+      "name": "#DescribeEnvironments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d2bdec2-feee-4347-b845-8d622241323d",
+          "name": "Amazon Elastic Beanstalk Describe Environments",
+          "request": {
+            "name": "Amazon Elastic Beanstalk Describe Environments",
+            "description": {
+              "content": "Returns descriptions for existing environments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "hash": "DescribeEnvironments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2010-12-01",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ApplicationName",
+                  "value": "<string>",
+                  "description": "The name of the application associated with the environments."
+                },
+                {
+                  "disabled": false,
+                  "key": "EnvironmentIds.member.1",
+                  "value": "<string>",
+                  "description": "An environment ID to describe."
+                },
+                {
+                  "disabled": false,
+                  "key": "EnvironmentNames.member.1",
+                  "value": "<string>",
+                  "description": "An environment name to describe."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeDeleted",
+                  "value": "<boolean>",
+                  "description": "Indicates whether to include deleted environments."
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "<integer>",
+                  "description": "The maximum number of environments to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "NextToken",
+                  "value": "<string>",
+                  "description": "The pagination token for the next set of results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57cef6a7-5241-46a8-98f6-9cd5355b1a9c",
+              "name": "Successful response with environment details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "hash": "DescribeEnvironments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2010-12-01"
+                    },
+                    {
+                      "key": "ApplicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EnvironmentIds.member.1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EnvironmentNames.member.1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://elasticbeanstalk.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a460c197-14bc-4f3f-bd98-2a3bdc57ee1f",
+    "name": "Amazon Elastic Beanstalk AWS Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API #DescribeEnvironments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Elastic Beanstalk is a platform-as-a-service that makes it easy to deploy, manage, and scale web applications and services.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}
