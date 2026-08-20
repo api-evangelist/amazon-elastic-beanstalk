@@ -24,6 +24,14 @@ specificationVersion: '0.23'
 tags:
   - Amazon Web Services
   - AWS
+  - Auto-Scaling
+  - Deployment
+  - Elastic Beanstalk
+  - Platform-as-a-Service
+  - Web Applications
+tags_raw:
+  - Amazon Web Services
+  - AWS
   - Auto Scaling
   - Deployment
   - Elastic Beanstalk
@@ -39,7 +47,8 @@ apis:
     for amazon elastic beanstalk aws elastic beanstalk api.
   humanURL: https://aws.amazon.com/elasticbeanstalk/
   baseURL: https://elasticbeanstalk.amazonaws.com
-  tags:
+  tags: []
+  tags_raw:
   - Amazon Elastic Beanstalk AWS Elastic Beanstalk API
   properties:
   - type: OpenAPI
