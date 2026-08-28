@@ -12,8 +12,14 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: elasticBeanstalkApi
-  url: ../openapi/amazon-elastic-beanstalk-openapi.yml
+- name: amazonElasticBeanstalkAwsElasticBeanstalkApiApi
+  url: ../openapi/amazon-elastic-beanstalk-amazon-elastic-beanstalk-aws-elastic-beanstalk-api-api-openapi.yml
+  type: openapi
+- name: createenvironmentApi
+  url: ../openapi/amazon-elastic-beanstalk-createenvironment-api-openapi.yml
+  type: openapi
+- name: describeenvironmentsApi
+  url: ../openapi/amazon-elastic-beanstalk-describeenvironments-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: add-environment-to-application

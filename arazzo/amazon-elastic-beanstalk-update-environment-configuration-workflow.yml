@@ -11,8 +11,11 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: elasticBeanstalkApi
-  url: ../openapi/amazon-elastic-beanstalk-openapi.yml
+- name: describeenvironmentsApi
+  url: ../openapi/amazon-elastic-beanstalk-describeenvironments-api-openapi.yml
+  type: openapi
+- name: updateenvironmentApi
+  url: ../openapi/amazon-elastic-beanstalk-updateenvironment-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: update-environment-configuration
