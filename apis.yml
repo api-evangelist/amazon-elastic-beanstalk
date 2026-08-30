@@ -36,10 +36,11 @@ specificationVersion: '0.23'
 tags:
   - Amazon Web Services
   - AWS
-  - Auto-Scaling
+  - Auto Scaling
   - Deployment
   - Elastic Beanstalk
-  - Platform-as-a-Service
+  - PaaS
+  - Platform As A Service
   - Web Applications
 tags_raw:
   - Amazon Web Services
