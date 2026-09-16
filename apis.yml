@@ -1,8 +1,8 @@
 name: Amazon Elastic Beanstalk
-description: >-
-  AWS Elastic Beanstalk is a platform-as-a-service (PaaS) that makes it easy to deploy, manage, and scale web
-  applications and services. You simply upload your code and Elastic Beanstalk automatically handles the deployment,
-  capacity provisioning, load balancing, auto-scaling, and application health monitoring.
+description: AWS Elastic Beanstalk is a platform-as-a-service (PaaS) that makes it easy to deploy, manage,
+  and scale web applications and services. You simply upload your code and Elastic Beanstalk automatically
+  handles the deployment, capacity provisioning, load balancing, auto-scaling, and application health
+  monitoring.
 deliveryModel:
   model: saas
   open_source: false
@@ -32,32 +32,30 @@ accessModel:
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 url: https://aws.amazon.com/elasticbeanstalk/
 created: '2024-01-15'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 tags:
-  - Amazon Web Services
-  - AWS
-  - Auto-Scaling
-  - Deployment
-  - Elastic Beanstalk
-  - Platform-as-a-Service
-  - Web Applications
+- Amazon Web Services
+- AWS
+- Auto-Scaling
+- Deployment
+- Elastic Beanstalk
+- Platform-as-a-Service
+- Web Applications
 tags_raw:
-  - Amazon Web Services
-  - AWS
-  - Auto Scaling
-  - Deployment
-  - Elastic Beanstalk
-  - PaaS
-  - Platform As A Service
-  - Web Applications
+- Amazon Web Services
+- AWS
+- Auto Scaling
+- Deployment
+- Elastic Beanstalk
+- PaaS
+- Platform As A Service
+- Web Applications
 apis:
-- aid: >-
-    amazon-elastic-beanstalk:amazon-elastic-beanstalk-amazon-elastic-beanstalk-aws-elastic-beanstalk-api-api
-  name: Amazon Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API API
-  description: >-
-    The Amazon Elastic Beanstalk AWS Elastic Beanstalk API API from Amazon Elastic Beanstalk — 1 operation(s)
-    for amazon elastic beanstalk aws elastic beanstalk api.
+- aid: amazon-elastic-beanstalk:amazon-elastic-beanstalk-amazon-elastic-beanstalk-aws-elastic-beanstalk-api-api
+  name: Amazon Elastic Beanstalk Amazon Elastic Beanstalk AWS Elastic Beanstalk API
+  description: The Amazon Elastic Beanstalk AWS Elastic Beanstalk API API from Amazon Elastic Beanstalk
+    — 1 operation(s) for amazon elastic beanstalk aws elastic beanstalk api.
   humanURL: https://aws.amazon.com/elasticbeanstalk/
   baseURL: https://elasticbeanstalk.amazonaws.com
   tags: []
@@ -65,8 +63,7 @@ apis:
   - Amazon Elastic Beanstalk AWS Elastic Beanstalk API
   properties:
   - type: OpenAPI
-    url: >-
-      openapi/amazon-elastic-beanstalk-amazon-elastic-beanstalk-aws-elastic-beanstalk-api-api-openapi.yml
+    url: openapi/amazon-elastic-beanstalk-amazon-elastic-beanstalk-aws-elastic-beanstalk-api-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/
   - type: APIReference
@@ -87,8 +84,7 @@ apis:
     url: json-ld/amazon-elastic-beanstalk-context.jsonld
 - aid: amazon-elastic-beanstalk:amazon-elastic-beanstalk-createenvironment-api
   name: 'Amazon Elastic Beanstalk #CreateEnvironment API'
-  description: >-
-    The #CreateEnvironment API from Amazon Elastic Beanstalk — 1 operation(s) for #createenvironment.
+  description: 'The #CreateEnvironment API from Amazon Elastic Beanstalk — 1 operation(s) for #createenvironment.'
   humanURL: https://aws.amazon.com/elasticbeanstalk/
   baseURL: https://elasticbeanstalk.amazonaws.com
   tags:
@@ -116,8 +112,7 @@ apis:
     url: json-ld/amazon-elastic-beanstalk-context.jsonld
 - aid: amazon-elastic-beanstalk:amazon-elastic-beanstalk-describeenvironments-api
   name: 'Amazon Elastic Beanstalk #DescribeEnvironments API'
-  description: >-
-    The #DescribeEnvironments API from Amazon Elastic Beanstalk — 1 operation(s) for #describeenvironments.
+  description: 'The #DescribeEnvironments API from Amazon Elastic Beanstalk — 1 operation(s) for #describeenvironments.'
   humanURL: https://aws.amazon.com/elasticbeanstalk/
   baseURL: https://elasticbeanstalk.amazonaws.com
   tags:
@@ -145,8 +140,7 @@ apis:
     url: json-ld/amazon-elastic-beanstalk-context.jsonld
 - aid: amazon-elastic-beanstalk:amazon-elastic-beanstalk-updateenvironment-api
   name: 'Amazon Elastic Beanstalk #UpdateEnvironment API'
-  description: >-
-    The #UpdateEnvironment API from Amazon Elastic Beanstalk — 1 operation(s) for #updateenvironment.
+  description: 'The #UpdateEnvironment API from Amazon Elastic Beanstalk — 1 operation(s) for #updateenvironment.'
   humanURL: https://aws.amazon.com/elasticbeanstalk/
   baseURL: https://elasticbeanstalk.amazonaws.com
   tags:
@@ -173,126 +167,126 @@ apis:
   - type: JSONLD
     url: json-ld/amazon-elastic-beanstalk-context.jsonld
 common:
-  - type: AgenticAccess
-    url: agentic-access/amazon-elastic-beanstalk-agentic-access.yml
-  - type: TrustCenter
-    url: security/amazon-elastic-beanstalk-trust-center.yml
-  - type: VulnerabilityDisclosure
-    url: security/amazon-elastic-beanstalk-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/amazon-elastic-beanstalk-domain-security.yml
-  - type: Authentication
-    url: authentication/amazon-elastic-beanstalk-authentication.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/amazon-elastic-beanstalk/overview
-  - type: Arazzo
-    url: arazzo/amazon-elastic-beanstalk-add-environment-to-application-workflow.yml
-    name: Amazon Elastic Beanstalk Add Environment To Application
-  - type: Arazzo
-    url: arazzo/amazon-elastic-beanstalk-audit-application-environments-workflow.yml
-    name: Amazon Elastic Beanstalk Audit Application Environments
-  - type: Arazzo
-    url: arazzo/amazon-elastic-beanstalk-deploy-version-to-environment-workflow.yml
-    name: Amazon Elastic Beanstalk Deploy Version To Environment
-  - type: Arazzo
-    url: arazzo/amazon-elastic-beanstalk-deploy-version-with-rollback-workflow.yml
-    name: Amazon Elastic Beanstalk Deploy Version With Rollback
-  - type: Arazzo
-    url: arazzo/amazon-elastic-beanstalk-provision-application-environment-workflow.yml
-    name: Amazon Elastic Beanstalk Provision Application And Environment
-  - type: Arazzo
-    url: arazzo/amazon-elastic-beanstalk-update-environment-configuration-workflow.yml
-    name: Amazon Elastic Beanstalk Update Environment Configuration
-  - type: Portal
-    url: https://aws.amazon.com/
-  - type: DeveloperPortal
-    url: https://aws.amazon.com/elasticbeanstalk/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/elasticbeanstalk/
-  - type: Blog
-    url: https://aws.amazon.com/blogs/
-  - type: GitHubOrganization
-    url: https://github.com/aws
-  - type: Console
-    url: https://console.aws.amazon.com/elasticbeanstalk/
-  - type: Signup
-    url: https://portal.aws.amazon.com/billing/signup
-  - type: Login
-    url: https://signin.aws.amazon.com/
-  - type: StatusPage
-    url: https://health.aws.amazon.com/health/status
-  - type: Support
-    url: https://aws.amazon.com/support/
-  - type: FAQ
-    url: https://aws.amazon.com/elasticbeanstalk/faqs/
-  - type: TermsOfService
-    url: https://aws.amazon.com/service-terms/
-  - type: PrivacyPolicy
-    url: https://aws.amazon.com/privacy/
-  - type: Compliance
-    url: https://aws.amazon.com/compliance/
-  - type: Security
-    url: https://aws.amazon.com/security/
-  - type: YouTube
-    url: https://www.youtube.com/user/AmazonWebServices
-  - type: StackOverflow
-    url: https://stackoverflow.com/questions/tagged/elasticbeanstalk
-  - type: KnowledgeCenter
-    url: https://repost.aws/knowledge-center
-  - type: Contact
-    url: https://aws.amazon.com/contact-us/
-  - type: SpectralRules
-    url: rules/amazon-elastic-beanstalk-spectral-rules.yml
-  - type: Vocabulary
-    url: vocabulary/amazon-elastic-beanstalk-vocabulary.yaml
-  - type: Features
-    data:
-      - name: Automatic Deployment
-        description: Upload code and Elastic Beanstalk handles deployment automatically
-      - name: Auto Scaling
-        description: Automatically scale capacity up and down based on application needs
-      - name: Health Monitoring
-        description: Monitor application health and performance with built-in dashboards
-      - name: Multi-Language Support
-        description: Support for Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker
-      - name: Environment Management
-        description: Manage multiple deployment environments (development, staging, production)
-  - type: UseCases
-    data:
-      - name: Web Application Hosting
-        description: Deploy and host web applications without managing infrastructure
-      - name: API Backend Deployment
-        description: Deploy REST API backends with automatic scaling and load balancing
-      - name: Microservices Deployment
-        description: Deploy containerized microservices using Docker or multi-container configurations
-      - name: Blue-Green Deployments
-        description: Perform zero-downtime deployments using environment URL swapping
-  - type: Integrations
-    data:
-      - name: Amazon EC2
-        description: Runs application environments on EC2 instances
-      - name: Amazon RDS
-        description: Provision and manage RDS databases alongside environments
-      - name: Amazon S3
-        description: Store application versions and deployment artifacts
-      - name: AWS CloudFormation
-        description: Manage environment infrastructure as code
-      - name: AWS CodePipeline
-        description: Integrate with CI/CD pipelines for automated deployments
-  - type: Integrations
-    url: https://aws.amazon.com/marketplace
+- type: AgenticAccess
+  url: agentic-access/amazon-elastic-beanstalk-agentic-access.yml
+- type: TrustCenter
+  url: security/amazon-elastic-beanstalk-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/amazon-elastic-beanstalk-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/amazon-elastic-beanstalk-domain-security.yml
+- type: Authentication
+  url: authentication/amazon-elastic-beanstalk-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/amazon-elastic-beanstalk/overview
+- type: Arazzo
+  url: arazzo/amazon-elastic-beanstalk-add-environment-to-application-workflow.yml
+  name: Amazon Elastic Beanstalk Add Environment To Application
+- type: Arazzo
+  url: arazzo/amazon-elastic-beanstalk-audit-application-environments-workflow.yml
+  name: Amazon Elastic Beanstalk Audit Application Environments
+- type: Arazzo
+  url: arazzo/amazon-elastic-beanstalk-deploy-version-to-environment-workflow.yml
+  name: Amazon Elastic Beanstalk Deploy Version To Environment
+- type: Arazzo
+  url: arazzo/amazon-elastic-beanstalk-deploy-version-with-rollback-workflow.yml
+  name: Amazon Elastic Beanstalk Deploy Version With Rollback
+- type: Arazzo
+  url: arazzo/amazon-elastic-beanstalk-provision-application-environment-workflow.yml
+  name: Amazon Elastic Beanstalk Provision Application And Environment
+- type: Arazzo
+  url: arazzo/amazon-elastic-beanstalk-update-environment-configuration-workflow.yml
+  name: Amazon Elastic Beanstalk Update Environment Configuration
+- type: Portal
+  url: https://aws.amazon.com/
+- type: DeveloperPortal
+  url: https://aws.amazon.com/elasticbeanstalk/
+- type: Documentation
+  url: https://docs.aws.amazon.com/elasticbeanstalk/
+- type: Blog
+  url: https://aws.amazon.com/blogs/
+- type: GitHubOrganization
+  url: https://github.com/aws
+- type: Console
+  url: https://console.aws.amazon.com/elasticbeanstalk/
+- type: Signup
+  url: https://portal.aws.amazon.com/billing/signup
+- type: Login
+  url: https://signin.aws.amazon.com/
+- type: StatusPage
+  url: https://health.aws.amazon.com/health/status
+- type: Support
+  url: https://aws.amazon.com/support/
+- type: FAQ
+  url: https://aws.amazon.com/elasticbeanstalk/faqs/
+- type: TermsOfService
+  url: https://aws.amazon.com/service-terms/
+- type: PrivacyPolicy
+  url: https://aws.amazon.com/privacy/
+- type: Compliance
+  url: https://aws.amazon.com/compliance/
+- type: Security
+  url: https://aws.amazon.com/security/
+- type: YouTube
+  url: https://www.youtube.com/user/AmazonWebServices
+- type: StackOverflow
+  url: https://stackoverflow.com/questions/tagged/elasticbeanstalk
+- type: KnowledgeCenter
+  url: https://repost.aws/knowledge-center
+- type: Contact
+  url: https://aws.amazon.com/contact-us/
+- type: SpectralRules
+  url: rules/amazon-elastic-beanstalk-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/amazon-elastic-beanstalk-vocabulary.yaml
+- type: Features
+  data:
+  - name: Automatic Deployment
+    description: Upload code and Elastic Beanstalk handles deployment automatically
+  - name: Auto Scaling
+    description: Automatically scale capacity up and down based on application needs
+  - name: Health Monitoring
+    description: Monitor application health and performance with built-in dashboards
+  - name: Multi-Language Support
+    description: Support for Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker
+  - name: Environment Management
+    description: Manage multiple deployment environments (development, staging, production)
+- type: UseCases
+  data:
+  - name: Web Application Hosting
+    description: Deploy and host web applications without managing infrastructure
+  - name: API Backend Deployment
+    description: Deploy REST API backends with automatic scaling and load balancing
+  - name: Microservices Deployment
+    description: Deploy containerized microservices using Docker or multi-container configurations
+  - name: Blue-Green Deployments
+    description: Perform zero-downtime deployments using environment URL swapping
+- type: Integrations
+  data:
+  - name: Amazon EC2
+    description: Runs application environments on EC2 instances
+  - name: Amazon RDS
+    description: Provision and manage RDS databases alongside environments
+  - name: Amazon S3
+    description: Store application versions and deployment artifacts
+  - name: AWS CloudFormation
+    description: Manage environment infrastructure as code
+  - name: AWS CodePipeline
+    description: Integrate with CI/CD pipelines for automated deployments
+- type: Integrations
+  url: https://aws.amazon.com/marketplace
 integrations:
-  - name: Sign in
-  - name: Agent Mode
-  - name: Why AWS Marketplace?
-  - name: Get started in AWS Marketplace
-  - name: Industry
-  - name: Resources
-  - name: Become a Channel Partner
-  - name: Sell in AWS Marketplace
-  - name: Manage Your Account
+- name: Sign in
+- name: Agent Mode
+- name: Why AWS Marketplace?
+- name: Get started in AWS Marketplace
+- name: Industry
+- name: Resources
+- name: Become a Channel Partner
+- name: Sell in AWS Marketplace
+- name: Manage Your Account
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-parent: aws
 x-relationship: product
