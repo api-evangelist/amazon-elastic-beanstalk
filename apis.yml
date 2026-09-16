@@ -167,6 +167,8 @@ apis:
   - type: JSONLD
     url: json-ld/amazon-elastic-beanstalk-context.jsonld
 common:
+- type: Website
+  url: https://amazon.com
 - type: AgenticAccess
   url: agentic-access/amazon-elastic-beanstalk-agentic-access.yml
 - type: TrustCenter
